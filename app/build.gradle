@@ -6,6 +6,10 @@ plugins {
 android {
     compileSdk 31
 
+    //뷰바인딩
+    viewBinding {
+        enabled true
+    }
     defaultConfig {
         applicationId "com.example.companion_diary"
         minSdk 26
