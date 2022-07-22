@@ -3,6 +3,7 @@ package com.example.companion_diary
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.companion_diary.databinding.ActivityMainBinding
+import com.example.companion_diary.diary.DiaryFragment
 
 class MainActivity : AppCompatActivity() {
 
