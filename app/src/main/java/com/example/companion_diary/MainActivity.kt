@@ -2,7 +2,9 @@ package com.example.companion_diary
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.companion_diary.databinding.ActivityMainBinding
+import com.kakao.sdk.common.util.Utility
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,6 +14,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //키 해쉬 벌급
+        var keyHash = Utility.getKeyHash(this)
+        Log.v(TAG, keyHash)
 
         initBottomNavigation()
 
