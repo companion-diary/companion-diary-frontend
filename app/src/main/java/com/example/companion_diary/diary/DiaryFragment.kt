@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
+import com.example.companion_diary.MainActivity
 import com.example.companion_diary.databinding.FragmentDiaryBinding
 
 class DiaryFragment : Fragment() {
@@ -28,7 +29,7 @@ class DiaryFragment : Fragment() {
      **/
     fun initRv() {
         val monthListManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false)
-        val monthListAdapter = DiaryMonthRVAdapter()
+        val monthListAdapter = DiaryMonthRVAdapter(context as MainActivity)
         binding.diaryMonthRv.apply{
             layoutManager = monthListManager
             adapter = monthListAdapter
