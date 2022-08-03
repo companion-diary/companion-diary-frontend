@@ -5,18 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.companion_diary.databinding.FragmentSearchBinding
+import com.example.companion_diary.databinding.FragmentDiaryBinding
 
 class DiaryFragment : Fragment() {
 
-    lateinit var binding: FragmentSearchBinding
+    lateinit var binding: FragmentDiaryBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentSearchBinding.inflate(inflater, container, false)
+        binding = FragmentDiaryBinding.inflate(inflater, container, false)
 
         return binding.root
     }

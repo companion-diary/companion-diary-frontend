@@ -46,10 +46,11 @@ android {
         jvmTarget = '1.8'
     }
     buildFeatures {
-        compose true
+//        compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion compose_version
+//        kotlinCompilerExtensionVersion compose_version
+//        kotlinCompilerVersion kotlin_version
     }
     packagingOptions {
         resources {

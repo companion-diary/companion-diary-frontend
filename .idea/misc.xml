@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/compose-model-1659345001204.xml" value="0.1" />
+        <entry key="../../../../layout/compose-model-1659507187633.xml" value="0.1" />
         <entry key="..\:/Users/82107/AndroidStudioProjects/companion-diary-frontend/app/src/main/res/drawable/ic_android_black_24dp.xml" value="0.1655" />
         <entry key="..\:/Users/82107/AndroidStudioProjects/companion-diary-frontend/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1655" />
         <entry key="..\:/Users/82107/AndroidStudioProjects/companion-diary-frontend/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
@@ -12,6 +14,8 @@
         <entry key="..\:/Users/82107/AndroidStudioProjects/companion-diary-frontend/app/src/main/res/layout/fragment_look.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/82107/AndroidStudioProjects/companion-diary-frontend/app/src/main/res/layout/fragment_search.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/82107/AndroidStudioProjects/companion-diary-frontend/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
       </map>
     </option>
   </component>
