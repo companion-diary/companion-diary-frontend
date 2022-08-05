@@ -23,6 +23,7 @@ class WriteDiaryActivity:AppCompatActivity() {
     lateinit var imgListAdapter: DiaryImgRVAdapter
     lateinit var mIntent : Intent
     lateinit var existArr : ArrayList<Int>
+    lateinit var nameTagList: ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +32,12 @@ class WriteDiaryActivity:AppCompatActivity() {
 
         initView()
         initClickListener()
-        initRecyclerView()
+        initImgRecyclerView()
+
+        /**
+         *  nameTagList : string -> 등록된 동식물 객체로 변경
+         *  bottomSheetDialog에서 선택한 동식물 태그만 넘어오도록 설정
+         */
 
         /**
          * 갤러리에서 이미지 받아와서 imgList에 추가하도록 설정
@@ -43,6 +49,8 @@ class WriteDiaryActivity:AppCompatActivity() {
     fun initView(){
         mIntent = intent
         var dateTitle = mIntent.getStringExtra("dateTitle")
+        nameTagList = mIntent.getStringArrayListExtra("nameTagList") as ArrayList<String>
+        initNameTagRecyclerView(nameTagList)
         binding.yearMonthDateTv.text = dateTitle
     }
 
@@ -123,7 +131,7 @@ class WriteDiaryActivity:AppCompatActivity() {
         }
     }
 
-    fun initRecyclerView(){
+    fun initImgRecyclerView(){
         imgListManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         imgListAdapter = DiaryImgRVAdapter(imgList, this)
         binding.imgRv.apply {
@@ -138,6 +146,15 @@ class WriteDiaryActivity:AppCompatActivity() {
                 imgListAdapter.removeItem(position)
             }
         })
+    }
+
+    fun initNameTagRecyclerView(nameTagList: ArrayList<String>){
+        val nameTagListManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        val nameTagListAdapter = DiaryWriteNameTagRVAdapter(nameTagList)
+        binding.writeDiaryActNameTagRv.apply {
+            layoutManager = nameTagListManager
+            adapter = nameTagListAdapter
+        }
     }
 
 }

@@ -8,10 +8,18 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.companion_diary.R
+import com.example.companion_diary.databinding.DialogWriteDiaryBinding
 import com.example.companion_diary.databinding.ItemDayBinding
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import org.json.JSONArray
 import java.util.*
 
@@ -50,25 +58,12 @@ class DiaryDayRVAdapter (val tempMonth:Int, val dayList:MutableList<Date>,val co
             if (tempMonth != dayList[position].month) {
                 binding.itemDayTv.alpha = 0f
                 binding.diaryExistIv.alpha = 0f
-                /**
-                 * 터치 안되게 하기
-                 */
+                binding.itemDayTv.isEnabled = false
             }
         }
         fun setClickListener(position: Int){
             binding.itemDayTv.setOnClickListener {
-                /**
-                 * 일기가 있으면 일기 보기 화면으로 전환
-                 * 일기가 없으면 일기 작성 화면으로 전환
-                 */
-                var intent = Intent(mContext, WriteDiaryActivity::class.java)
-                intent.putExtra(
-                    "dateTitle",
-                    "${dayList[position].year % 100 + 2000}년 ${dayList[position].month + 1}월 ${dayList[position].date}일 ${dayOfTheWeek(position)}요일"
-                )
-                intent.putExtra("month","${dayList[position].month + 1}")
-                intent.putExtra("position",position)
-                mContext.startActivity(intent)
+                initBottomSheetDialog(position)
             }
         }
         fun setDiaryExistMark(position: Int){
@@ -100,5 +95,47 @@ class DiaryDayRVAdapter (val tempMonth:Int, val dayList:MutableList<Date>,val co
             5 -> "금"
             else -> "토"
         }
+    }
+    private fun initBottomSheetDialog(position: Int){
+        var dateStr = "${dayList[position].year % 100 + 2000}년 ${dayList[position].month + 1}월 ${dayList[position].date}일"
+        val dialog = BottomSheetDialog(mContext)
+        dialog.setContentView(R.layout.dialog_write_diary)
+        val dateTv = dialog.findViewById<TextView>(R.id.year_month_date_tv)
+        val prevBtn = dialog.findViewById<ImageView>(R.id.prev_iv)
+        val writeDiaryBtn = dialog.findViewById<Button>(R.id.write_diary_btn)
+        val companionRv = dialog.findViewById<RecyclerView>(R.id.companion_name_tag_rv)
+        var nameTagList = ArrayList<String>()
+
+        nameTagList.apply{
+            add("호두")
+            add("제임스")
+        }
+
+        var nameTagRVAdpater = DiaryNameTagRVAdapter(nameTagList)
+        var nameTagLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false)
+        companionRv?.apply{
+            adapter = nameTagRVAdpater
+            layoutManager = nameTagLayoutManager
+        }
+
+        dateTv?.text = dateStr
+        prevBtn?.setOnClickListener {
+            dialog.dismiss()
+        }
+        writeDiaryBtn?.setOnClickListener {
+            var intent = Intent(mContext, WriteDiaryActivity::class.java)
+            intent.putExtra(
+                "dateTitle",
+                dateStr + "${dayOfTheWeek(position)}요일"
+            )
+            intent.putExtra("month","${dayList[position].month + 1}")
+            intent.putExtra("position",position)
+            intent.putExtra("nameTagList",nameTagList)
+            mContext.startActivity(intent)
+            dialog.dismiss()
+        }
+        dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
+        dialog.behavior.skipCollapsed = true
+        dialog.show()
     }
 }
