@@ -12,6 +12,8 @@ import com.kakao.sdk.user.UserApiClient
 
 class KakaoAuthViewModel(application : Application) : AndroidViewModel(application) {
 
+    val authToken : String = ""
+
     companion object {
         const val TAG = "KakaoAuthViewModel"
     }

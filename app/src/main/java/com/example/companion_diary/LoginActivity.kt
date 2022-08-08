@@ -3,6 +3,7 @@ package com.example.companion_diary
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.activity.viewModels
 import com.example.companion_diary.databinding.ActivityLoginBinding
 
@@ -22,7 +23,7 @@ class LoginActivity : AppCompatActivity() {
     }
 }
 
-private fun KakaoLoginView(viewModel: KakaoAuthViewModel, LoginBtn : Button){
+private fun KakaoLoginView(viewModel: KakaoAuthViewModel, LoginBtn : ImageButton){
 
     LoginBtn.setOnClickListener{
         viewModel.handleKakaoLogin()
