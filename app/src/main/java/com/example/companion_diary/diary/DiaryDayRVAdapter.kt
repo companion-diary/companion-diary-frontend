@@ -56,9 +56,10 @@ class DiaryDayRVAdapter (val tempMonth:Int, val dayList:MutableList<Date>,val co
                 }
             )
             if (tempMonth != dayList[position].month) {
-                binding.itemDayTv.alpha = 0f
-                binding.diaryExistIv.alpha = 0f
-                binding.itemDayTv.isEnabled = false
+                binding.itemDayLayout.visibility = View.GONE
+//                binding.itemDayTv.alpha = 0.3f
+//                binding.diaryExistIv.alpha = 0.3f
+//                binding.itemDayTv.isEnabled = false
             }
         }
         fun setClickListener(position: Int){

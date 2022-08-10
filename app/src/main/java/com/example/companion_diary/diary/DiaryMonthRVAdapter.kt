@@ -28,17 +28,17 @@ class DiaryMonthRVAdapter (val context: Context): RecyclerView.Adapter<DiaryMont
 
     override fun onBindViewHolder(holder: DiaryMonthRVAdapter.ViewHolder, position: Int) {
         when(position%2){
-            0-> holder.binding.itemMonthLayout.setBackgroundColor(ContextCompat.getColor(context,R.color.sub_color_orange))
-            else -> holder.binding.itemMonthLayout.setBackgroundColor(ContextCompat.getColor(context,R.color.sub_color_green))
+            0-> holder.binding.itemMonthLayout.setBackgroundResource(R.drawable.border_diary_layout_orange)
+            else -> holder.binding.itemMonthLayout.setBackgroundResource(R.drawable.border_diary_layout_green)
         }
-        holder.setCalendar()
+        holder.setCalendar(position)
         holder.setRecyclerView()
     }
 
     override fun getItemCount(): Int = Int.MAX_VALUE
 
     inner class ViewHolder(val binding: ItemMonthBinding): RecyclerView.ViewHolder(binding.root) {
-        fun setCalendar(){
+        fun setCalendar(position: Int){
             calendar.time = Date()
             calendar.set(Calendar.DAY_OF_MONTH, 1)
             calendar.add(Calendar.MONTH,position-center)

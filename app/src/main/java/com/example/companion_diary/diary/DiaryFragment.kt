@@ -25,17 +25,19 @@ class DiaryFragment : Fragment() {
     }
 
     /**
-     * recyclerView 설정
+     * RecyclerView 설정
      **/
     fun initRv() {
-        val monthListManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false)
         val monthListAdapter = DiaryMonthRVAdapter(context as MainActivity)
+        val monthListManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
         binding.diaryMonthRv.apply{
             layoutManager = monthListManager
             adapter = monthListAdapter
+            addItemDecoration(DiaryMonthRVDecoration())
             scrollToPosition(Int.MAX_VALUE/2)
         }
         val snap = PagerSnapHelper()
         snap.attachToRecyclerView(binding.diaryMonthRv)
     }
+
 }
