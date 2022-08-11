@@ -13,15 +13,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Companiondiary">
         <activity
-            android:name=".SplashActivty"
+            android:name=".MainActivity"
             android:exported="false" />
-        <activity android:name=".MainActivity" /> <!-- <activity -->
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+<!--        <activity android:name=".LoginActivity" /> &lt;!&ndash; <activity &ndash;&gt;-->
         <!-- android:name=".MainActivity" -->
         <!-- android:exported="false" -->
         <!-- android:label="@string/title_activity_main2" -->
         <!-- android:theme="@style/Theme.Companiondiary" /> -->
         <activity
-            android:name=".LoginActivity"
+            android:name=".SplashActivty"
+            android:theme="@style/SplashTheme"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
