@@ -48,9 +48,9 @@ class WriteDiaryActivity:AppCompatActivity() {
 
     fun initView(){
         mIntent = intent
-        var dateTitle = mIntent.getStringExtra("dateTitle")
-        nameTagList = mIntent.getStringArrayListExtra("nameTagList") as ArrayList<String>
-        initNameTagRecyclerView(nameTagList)
+        var dateTitle = mIntent.getStringExtra("year")+"년"+mIntent.getStringExtra("monthOfYear")+"월"+mIntent.getStringExtra("dayOfMonth")+"일"
+        //nameTagList = mIntent.getStringArrayListExtra("nameTagList") as ArrayList<String>
+        //initNameTagRecyclerView(nameTagList)
         binding.yearMonthDateTv.text = dateTitle
     }
 
@@ -62,28 +62,28 @@ class WriteDiaryActivity:AppCompatActivity() {
             val sharedPreferences = getSharedPreferences("${mIntent.getStringExtra("month")}", MODE_PRIVATE)
             val editor = sharedPreferences.edit()
 
-            /**
-             * SharedPreferences에 저장되어있는 existArr 가져와서 등록 버튼 누른 날짜를 추가
-             */
-            existArr = ArrayList<Int>()
-            if(sharedPreferences.contains("existArr")){
-                var existString = sharedPreferences.getString("existArr","")
-                var getJsonArr = JSONArray(existString)
-                for(i in 0 until getJsonArr.length()){
-                    existArr.add(getJsonArr.optInt(i))
-                }
-            }
-            existArr.add(mIntent.getIntExtra("position",0))
-
-            /**
-             * existArr을 Json배열로 변경해서 String으로 변경 후 SharedPreferences에 저장
-             */
-            var setJsonArr = JSONArray()
-            for(i in existArr){
-                setJsonArr.put(i)
-            }
-            editor.putString("existArr", setJsonArr.toString())
-            editor.apply()
+//            /**
+//             * SharedPreferences에 저장되어있는 existArr 가져와서 등록 버튼 누른 날짜를 추가
+//             */
+//            existArr = ArrayList<Int>()
+//            if(sharedPreferences.contains("existArr")){
+//                var existString = sharedPreferences.getString("existArr","")
+//                var getJsonArr = JSONArray(existString)
+//                for(i in 0 until getJsonArr.length()){
+//                    existArr.add(getJsonArr.optInt(i))
+//                }
+//            }
+//            existArr.add(mIntent.getIntExtra("position",0))
+//
+//            /**
+//             * existArr을 Json배열로 변경해서 String으로 변경 후 SharedPreferences에 저장
+//             */
+//            var setJsonArr = JSONArray()
+//            for(i in existArr){
+//                setJsonArr.put(i)
+//            }
+//            editor.putString("existArr", setJsonArr.toString())
+//            editor.apply()
 
             /**
              * 화면 전환
