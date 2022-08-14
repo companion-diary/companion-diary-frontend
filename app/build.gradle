@@ -52,6 +52,8 @@ dependencies {
     // bottom sheet dialog
     implementation 'com.google.android.material:material:1.5.0-alpha02'
 
-    // viewPager2
-    // implementation 'androidx.viewpager2:viewpager2:1.0.0'
+    // viewPager
+    implementation "androidx.viewpager2:viewpager2:1.1.0-alpha01"
+    // joda-time
+    implementation 'joda-time:joda-time:2.10.6'
 }
