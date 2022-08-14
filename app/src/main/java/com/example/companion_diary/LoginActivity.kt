@@ -34,26 +34,27 @@ class LoginActivity : AppCompatActivity() {
         kakaoAuthViewModel = ViewModelProvider(this).get(KakaoAuthViewModel::class.java)
 
         kakaoAuthViewModel.currentToken.observe(this, Observer{
-           if(it != ""){
-               //토큰 전송 함수 호출
-               //토큰 전송 후 토큰 유효 여부를 확인한 후에 페이지 이동
-           }else {
+            if(it.isNotEmpty()){
+                //토큰 전송 함수 호출
+                //토큰 전송 후 토큰 유효 여부를 확인한 후에 페이지 이동
+            }else {
 
-               val builder = AlertDialog.Builder(this)
+//                val builder = AlertDialog.Builder(this)
+//
+//                builder.setTitle("로그인 오류")
+//                    .setMessage("로그인에 실패하였습니다. 로그인을 다시 진행해주세요.")
+//                    .setPositiveButton("확인", DialogInterface.OnClickListener { dialog , i ->
+//                    })
+//                val alertDialog = builder.create()
+//                alertDialog.show()
 
-               builder.setTitle("로그인 오류")
-                   .setMessage("로그인에 실패하였습니다. 로그인을 다시 진행해주세요.")
-                   .setPositiveButton("확인", DialogInterface.OnClickListener { dialog , i ->
-                   })
-                val alertDialog = builder.create()
-                alertDialog.show()
-
-               }
+            }
         })
 
 
         binding.loginBtn.setOnClickListener{
             kakaoAuthViewModel.kakaoLogin()
+
         }
 
 //        KakaoLoginView(kakaoAuthViewModel, binding.loginBtn)

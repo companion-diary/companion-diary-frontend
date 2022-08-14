@@ -22,6 +22,7 @@ class KakaoAuthViewModel(application : Application) : AndroidViewModel(applicati
     private val context = application.applicationContext
 
     private val tokenInfo = MutableLiveData<String>()
+    private val isDataLoaded = MutableLiveData<Boolean>()
 
     val currentToken : LiveData<String>
         get() = tokenInfo
