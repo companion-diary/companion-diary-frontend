@@ -89,13 +89,16 @@
             app:layout_constraintTop_toBottomOf="@+id/title"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/loginBtn"
-        app:layout_constraintStart_toStartOf="@id/loginBtn"
-        android:layout_marginTop="16dp"
-        android:id="@+id/remember_me_cb"/>
+        <CheckBox
+            android:id="@+id/remember_me_cb"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="21dp"
+            android:button="@null"
+            android:background="@drawable/check_box_selector"
+            app:layout_constraintStart_toStartOf="@id/loginBtn"
+            app:layout_constraintTop_toBottomOf="@id/loginBtn"
+            tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -106,7 +109,8 @@
         android:fontFamily="@font/notosanskrregular"
         android:textSize="12sp"
         android:textColor="#000000"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="17.21dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

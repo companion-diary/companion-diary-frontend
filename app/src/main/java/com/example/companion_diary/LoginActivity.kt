@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -30,6 +31,9 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+//        val checkBox : CheckBox = binding.rememberMeCb
+//        checkBox.setButtonDrawable(R.drawable.check_box_selector)
 
         kakaoAuthViewModel = ViewModelProvider(this).get(KakaoAuthViewModel::class.java)
 
