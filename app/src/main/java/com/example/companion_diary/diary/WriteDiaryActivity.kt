@@ -1,7 +1,9 @@
 package com.example.companion_diary.diary
 
+import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -13,9 +15,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.companion_diary.MainActivity
 import com.example.companion_diary.databinding.ActivityMainBinding
 import com.example.companion_diary.databinding.ActivityWriteDiaryBinding
+import com.gun0912.tedpermission.PermissionListener
+import com.gun0912.tedpermission.normal.TedPermission
 import org.json.JSONArray
 
-class WriteDiaryActivity:AppCompatActivity() {
+class WriteDiaryActivity:AppCompatActivity(), PermissionListener {
 
     lateinit var binding : ActivityWriteDiaryBinding
     lateinit var imgList : ArrayList<String>
@@ -59,8 +63,8 @@ class WriteDiaryActivity:AppCompatActivity() {
             finish()
         }
         binding.writeDiaryToolbar.registerBtn.setOnClickListener {
-            val sharedPreferences = getSharedPreferences("${mIntent.getStringExtra("month")}", MODE_PRIVATE)
-            val editor = sharedPreferences.edit()
+//            val sharedPreferences = getSharedPreferences("${mIntent.getStringExtra("month")}", MODE_PRIVATE)
+//            val editor = sharedPreferences.edit()
 
 //            /**
 //             * SharedPreferences에 저장되어있는 existArr 가져와서 등록 버튼 누른 날짜를 추가
@@ -92,44 +96,38 @@ class WriteDiaryActivity:AppCompatActivity() {
             startActivity(intent)
         }
         binding.addImgTv.setOnClickListener {
-            var intent = Intent(Intent.ACTION_PICK)
-            intent.data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true)
-            intent.action = Intent.ACTION_GET_CONTENT
-
-            startActivityForResult(intent, 200)
+            checkPermission()
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
+    fun checkPermission(){
+        if(Build.VERSION.SDK_INT >= 23) { // 마시멜로우 이상 버전
+            TedPermission.create()
+                .setPermissionListener(this)
+                .setRationaleMessage("카메라 접근 허용이 필요한 서비스입니다.")
+                .setDeniedMessage("[설정] → [권한]에서 권한 변경이 가능합니다.")
+                .setDeniedCloseButtonText("닫기")
+                .setGotoSettingButtonText("설정")
+                .setRationaleTitle("권한 설정")
+                .setPermissions(
+                    WRITE_EXTERNAL_STORAGE
+                )
+                .check()
+        }
+    }
 
+    override fun onPermissionGranted() {
+        Toast.makeText(this, "카메라 접근 권한이 허용되었습니다.",Toast.LENGTH_SHORT).show()
         /**
-         * 사진 최대 개수 설정하기, Deprecated된 startActivityForResult 대신 registerForActivityResult 사용
+         * 갤러리 접근
          */
-        if(resultCode == RESULT_OK && requestCode == 200){
-            if(data?.clipData != null){
-                val count = data.clipData!!.itemCount
-                if(count>10){
-                    Toast.makeText(this,"사진은 10장까지 선택 가능합니다",Toast.LENGTH_SHORT).show()
-                    return
-                }
-                for(i in 0 until count){
-                    val imgUri = data.clipData!!.getItemAt(i).uri
-                    imgList.add(imgUri.toString())
-                }
-            }
-            else{
-                data?.data?.let { uri ->
-                    val imgUri: Uri? = data?.data
-                    if(imgUri != null){
-                        imgList.add(imgUri.toString())
-                    }
-                }
-            }
-            imgListAdapter.notifyDataSetChanged()
-        }
     }
+
+    override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
+        Toast.makeText(this, "카메라 접근 권한이 거부되었습니다.",Toast.LENGTH_SHORT).show()
+    }
+
+
 
     fun initImgRecyclerView(){
         imgListManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
