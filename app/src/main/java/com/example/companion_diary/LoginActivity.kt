@@ -37,16 +37,16 @@ class LoginActivity : AppCompatActivity() {
             if(it.isNotEmpty()){
                 //토큰 전송 함수 호출
                 //토큰 전송 후 토큰 유효 여부를 확인한 후에 페이지 이동
-            }else {
+            } else if(it == "error") {
 
-//                val builder = AlertDialog.Builder(this)
-//
-//                builder.setTitle("로그인 오류")
-//                    .setMessage("로그인에 실패하였습니다. 로그인을 다시 진행해주세요.")
-//                    .setPositiveButton("확인", DialogInterface.OnClickListener { dialog , i ->
-//                    })
-//                val alertDialog = builder.create()
-//                alertDialog.show()
+                val builder = AlertDialog.Builder(this)
+
+                builder.setTitle("로그인 오류")
+                    .setMessage("로그인에 실패하였습니다. 로그인을 다시 진행해주세요.")
+                    .setPositiveButton("확인", DialogInterface.OnClickListener { dialog , i ->
+                    })
+                val alertDialog = builder.create()
+                alertDialog.show()
 
             }
         })
