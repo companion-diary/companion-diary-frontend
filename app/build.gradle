@@ -56,4 +56,7 @@ dependencies {
     implementation "androidx.viewpager2:viewpager2:1.1.0-alpha01"
     // joda-time
     implementation 'joda-time:joda-time:2.10.6'
+
+    // permission
+    implementation 'io.github.ParkSangGwon:tedpermission-normal:3.3.0'
 }
