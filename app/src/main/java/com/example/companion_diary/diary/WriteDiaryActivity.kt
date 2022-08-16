@@ -123,7 +123,20 @@ class WriteDiaryActivity:AppCompatActivity(), PermissionListener {
         /**
          * 갤러리 접근
          */
-
+        TedBottomPicker.with(this)
+            .setPeekHeight(1600)
+            .showTitle(false)
+            .setCompleteButtonText("Done")
+            .setEmptySelectionText("No Select")
+            .setSelectedUriList(imgList)
+            .showMultiImage(object: TedBottomSheetDialogFragment.OnMultiImageSelectedListener{
+                override fun onImagesSelected(uriList: MutableList<Uri>?) {
+                    if(uriList == null) return
+                    imgList.clear()
+                    imgList.addAll(uriList!!)
+                    imgListAdapter.notifyDataSetChanged()
+                }
+            })
     }
 
     override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
