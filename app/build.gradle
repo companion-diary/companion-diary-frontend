@@ -29,9 +29,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    //뷰바인딩
-    viewBinding {
-        enabled true
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
     }
 }
 
@@ -59,4 +59,6 @@ dependencies {
 
     // permission
     implementation 'io.github.ParkSangGwon:tedpermission-normal:3.3.0'
+    // imagePicker
+    implementation 'com.github.niusounds:TedBottomPicker:3.0.0'
 }

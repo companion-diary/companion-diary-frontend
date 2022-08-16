@@ -1,13 +1,14 @@
 package com.example.companion_diary.diary
 
 import android.content.Context
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.companion_diary.databinding.ItemImgBinding
 
-class DiaryImgRVAdapter(private var imgList: ArrayList<String>,val context: Context): RecyclerView.Adapter<DiaryImgRVAdapter.ViewHolder>() {
+class DiaryImgRVAdapter(private var imgList: MutableList<Uri>, val context: Context): RecyclerView.Adapter<DiaryImgRVAdapter.ViewHolder>() {
     /**
      * img RecyclerView item delete 구현
      */

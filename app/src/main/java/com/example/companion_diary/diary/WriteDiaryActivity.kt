@@ -2,6 +2,7 @@ package com.example.companion_diary.diary
 
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -17,12 +18,14 @@ import com.example.companion_diary.databinding.ActivityMainBinding
 import com.example.companion_diary.databinding.ActivityWriteDiaryBinding
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.normal.TedPermission
+import gun0912.tedbottompicker.TedBottomPicker
+import gun0912.tedbottompicker.TedBottomSheetDialogFragment
 import org.json.JSONArray
 
 class WriteDiaryActivity:AppCompatActivity(), PermissionListener {
 
     lateinit var binding : ActivityWriteDiaryBinding
-    lateinit var imgList : ArrayList<String>
+    lateinit var imgList : MutableList<Uri>
     lateinit var imgListManager: LinearLayoutManager
     lateinit var imgListAdapter: DiaryImgRVAdapter
     lateinit var mIntent : Intent
@@ -32,7 +35,7 @@ class WriteDiaryActivity:AppCompatActivity(), PermissionListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWriteDiaryBinding.inflate(layoutInflater)
-        imgList = ArrayList<String>()
+        imgList = ArrayList<Uri>()
 
         initView()
         initClickListener()
@@ -58,7 +61,7 @@ class WriteDiaryActivity:AppCompatActivity(), PermissionListener {
         binding.yearMonthDateTv.text = dateTitle
     }
 
-    fun initClickListener(){
+    private fun initClickListener(){
         binding.writeDiaryToolbar.cancelBtn.setOnClickListener {
             finish()
         }
@@ -117,17 +120,15 @@ class WriteDiaryActivity:AppCompatActivity(), PermissionListener {
     }
 
     override fun onPermissionGranted() {
-        Toast.makeText(this, "카메라 접근 권한이 허용되었습니다.",Toast.LENGTH_SHORT).show()
         /**
          * 갤러리 접근
          */
+
     }
 
     override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
         Toast.makeText(this, "카메라 접근 권한이 거부되었습니다.",Toast.LENGTH_SHORT).show()
     }
-
-
 
     fun initImgRecyclerView(){
         imgListManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
