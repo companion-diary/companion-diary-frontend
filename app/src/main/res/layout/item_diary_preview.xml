@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_diary_layout"
+    android:layout_width="150dp"
+    android:layout_height="150dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/border_diary_layout_orange">
+
+    <TextView
+        android:id="@+id/item_diary_name_tag_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/jalnan"
+        android:includeFontPadding="false"
+        android:maxLength="9"
+        android:maxLines="1"
+        android:text="호두"
+        android:textColor="@color/main_color_orange"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/ic_iv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/ic_iv" />
+
+    <ImageView
+        android:id="@+id/ic_iv"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:src="@drawable/ic_animal"
+        app:layout_constraintEnd_toStartOf="@id/item_diary_name_tag_tv"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/item_diary_title_content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ic_iv">
+
+        <TextView
+            android:id="@+id/item_diary_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/jalnan"
+            android:maxLines="2"
+            android:text="우리 호두는\n왜 이렇게 귀여워?"
+            android:lineSpacingExtra="5dp"
+            android:textColor="@color/main_color_orange"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/item_diary_contents_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:maxLines="2"
+            android:text="오늘 물을 주는데 파란 이파리가 생생한 초록빛이여서 기분이 너무너무 좋았다."
+            android:textColor="@color/sub_color_gray"
+            android:textSize="10sp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

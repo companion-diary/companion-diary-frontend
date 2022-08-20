@@ -3,32 +3,32 @@
     android:layout_width="match_parent"
     android:layout_height="70dp">
     
-    <TextView
+    <ImageView
         android:id="@+id/cancel_btn"
-        android:layout_width="30dp"
-        android:layout_height="20dp"
-        android:textSize="14sp"
-        android:text="취소"
+        android:layout_width="10dp"
+        android:layout_height="16dp"
+        android:src="@drawable/previous_button"
         android:gravity="center"
-        android:layout_marginStart="26dp"/>
+        android:layout_marginStart="32dp"/>
 
     <TextView
         android:layout_width="70dp"
         android:layout_height="23dp"
         android:textSize="16sp"
         android:text="일기 작성"
-        android:textStyle="bold"
+        android:textColor="@color/main_color_black"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:includeFontPadding="false"
         android:gravity="center"
         android:layout_gravity="center"/>
 
-    <TextView
-        android:id="@+id/register_btn"
-        android:layout_width="30dp"
+    <ImageView
+        android:id="@+id/more_btn"
+        android:layout_width="wrap_content"
         android:layout_height="20dp"
-        android:textSize="14sp"
-        android:text="등록"
         android:layout_gravity="end"
         android:gravity="center"
+        android:src="@drawable/more_button"
         android:layout_marginEnd="26dp"/>
 
 

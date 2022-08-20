@@ -6,8 +6,8 @@
 
     <ImageView
         android:id="@+id/item_img_iv"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
         android:scaleType="centerCrop"
         android:background="@drawable/border_img"
         app:layout_constraintTop_toTopOf="@id/item_img_border"
@@ -24,14 +24,11 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_margin="5dp"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:backgroundTint="@color/gray_color"
+    <ImageView
         android:id="@+id/remove_img_btn"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        app:borderWidth="0dp"
-        android:elevation="0dp"
-        app:elevation="0dp"
+        android:src="@drawable/ic_remove"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 

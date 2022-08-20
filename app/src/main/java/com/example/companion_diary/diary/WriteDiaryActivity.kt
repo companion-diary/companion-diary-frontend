@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.companion_diary.MainActivity
+import com.example.companion_diary.R
 import com.example.companion_diary.databinding.ActivityMainBinding
 import com.example.companion_diary.databinding.ActivityWriteDiaryBinding
 import com.gun0912.tedpermission.PermissionListener
@@ -30,7 +31,6 @@ class WriteDiaryActivity:AppCompatActivity(), PermissionListener {
     lateinit var imgListAdapter: DiaryImgRVAdapter
     lateinit var mIntent : Intent
     lateinit var existArr : ArrayList<Int>
-    lateinit var nameTagList: ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,17 +55,18 @@ class WriteDiaryActivity:AppCompatActivity(), PermissionListener {
 
     fun initView(){
         mIntent = intent
-        var dateTitle = mIntent.getStringExtra("year")+"년"+mIntent.getStringExtra("monthOfYear")+"월"+mIntent.getStringExtra("dayOfMonth")+"일"
+        var dateTitle = mIntent.getStringExtra("year")+"년 "+mIntent.getStringExtra("monthOfYear")+"월 "+mIntent.getStringExtra("dayOfMonth")+"일"
         //nameTagList = mIntent.getStringArrayListExtra("nameTagList") as ArrayList<String>
         //initNameTagRecyclerView(nameTagList)
         binding.yearMonthDateTv.text = dateTitle
+//        binding.registerBtn.setBackgroundDrawable(R.drawable.border_floating_button)
     }
 
     private fun initClickListener(){
         binding.writeDiaryToolbar.cancelBtn.setOnClickListener {
             finish()
         }
-        binding.writeDiaryToolbar.registerBtn.setOnClickListener {
+        binding.writeDiaryToolbar.moreBtn.setOnClickListener {
 //            val sharedPreferences = getSharedPreferences("${mIntent.getStringExtra("month")}", MODE_PRIVATE)
 //            val editor = sharedPreferences.edit()
 
@@ -92,19 +93,22 @@ class WriteDiaryActivity:AppCompatActivity(), PermissionListener {
 //            editor.putString("existArr", setJsonArr.toString())
 //            editor.apply()
 
+
+        }
+        binding.registerBtn.setOnClickListener {
             /**
              * 화면 전환
              */
             var intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
         }
-        binding.addImgTv.setOnClickListener {
+        binding.addImgIv.setOnClickListener {
             checkPermission()
         }
     }
 
     fun checkPermission(){
-        if(Build.VERSION.SDK_INT >= 23) { // 마시멜로우 이상 버전
+        if(Build.VERSION.SDK_INT >= 23) {
             TedPermission.create()
                 .setPermissionListener(this)
                 .setRationaleMessage("카메라 접근 허용이 필요한 서비스입니다.")
@@ -133,7 +137,7 @@ class WriteDiaryActivity:AppCompatActivity(), PermissionListener {
                 override fun onImagesSelected(uriList: MutableList<Uri>?) {
                     if(uriList == null) return
                     imgList.clear()
-                    imgList.addAll(uriList!!)
+                    imgList.addAll(uriList)
                     imgListAdapter.notifyDataSetChanged()
                 }
             })
@@ -158,15 +162,6 @@ class WriteDiaryActivity:AppCompatActivity(), PermissionListener {
                 imgListAdapter.removeItem(position)
             }
         })
-    }
-
-    fun initNameTagRecyclerView(nameTagList: ArrayList<String>){
-        val nameTagListManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        val nameTagListAdapter = DiaryWriteNameTagRVAdapter(nameTagList)
-        binding.writeDiaryActNameTagRv.apply {
-            layoutManager = nameTagListManager
-            adapter = nameTagListAdapter
-        }
     }
 
 }

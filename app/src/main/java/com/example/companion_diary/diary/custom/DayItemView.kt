@@ -6,7 +6,6 @@ import android.content.Intent
 import android.graphics.*
 import android.text.TextPaint
 import android.util.AttributeSet
-import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.View
 import android.widget.Button
@@ -17,12 +16,13 @@ import androidx.annotation.StyleRes
 import androidx.core.content.withStyledAttributes
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.companion_diary.MainActivity
 import com.example.companion_diary.diary.utils.CalendarUtils.Companion.getDateColor
 import com.example.companion_diary.diary.utils.CalendarUtils.Companion.isDiaryExist
 import com.example.companion_diary.diary.utils.CalendarUtils.Companion.isSameMonth
 import com.example.companion_diary.R
-import com.example.companion_diary.diary.DiaryNameTagRVAdapter
+import com.example.companion_diary.diary.DiaryItemDecoration
+import com.example.companion_diary.diary.DiaryRVAdater
+import com.example.companion_diary.diary.NameTagRVAdapter
 import com.example.companion_diary.diary.WriteDiaryActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -58,7 +58,10 @@ class DayItemView @JvmOverloads constructor(
             }
             dotPaint = Paint().apply {
                 isAntiAlias = true
-                color = Color.parseColor("#3D821C")
+                color = when(date.monthOfYear%2){
+                    0 -> context.getColor(R.color.main_color_orange)
+                    else -> context.getColor(R.color.main_color_green)
+                }
                 strokeWidth = 12f
                 strokeCap = Paint.Cap.ROUND
             }
@@ -106,7 +109,9 @@ class DayItemView @JvmOverloads constructor(
         val prevBtn = dialog.findViewById<ImageView>(R.id.prev_iv)
         val writeDiaryBtn = dialog.findViewById<Button>(R.id.write_diary_btn)
         val companionRv = dialog.findViewById<RecyclerView>(R.id.companion_name_tag_rv)
+        val diaryRv = dialog.findViewById<RecyclerView>(R.id.diary_rv)
         var nameTagList = ArrayList<String>()
+        var diaryList = ArrayList<String>()
 
         /**
          * 날짜
@@ -123,16 +128,37 @@ class DayItemView @JvmOverloads constructor(
         nameTagList.apply{
             add("호두")
             add("제임스")
+            add("연두")
+            add("밀키")
         }
 
         /**
          * 이름 태그 recyclerView 설정
          */
-        var nameTagListAdapter = DiaryNameTagRVAdapter(nameTagList)
+        var nameTagListAdapter = NameTagRVAdapter(nameTagList)
         var nameTagListManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false)
         companionRv?.apply{
             adapter = nameTagListAdapter
             layoutManager = nameTagListManager
+        }
+
+        /**
+         * 날짜에 맞는 일기 리스트 전부 받아오기
+         * 현재는 더미데이터
+         */
+
+        diaryList.apply{
+            add("호두")
+            add("제임스")
+            add("연두")
+            add("밀키")
+        }
+        var diaryListAdapter = DiaryRVAdater(diaryList)
+        var diaryListManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+        diaryRv?.apply{
+            adapter = diaryListAdapter
+            layoutManager = diaryListManager
+            addItemDecoration(DiaryItemDecoration(context))
         }
 
 

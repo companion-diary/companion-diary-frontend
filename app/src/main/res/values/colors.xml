@@ -18,9 +18,10 @@
 
     <color name="main_color_green">#3D821C</color>
     <color name="main_color_orange">#FD961D</color>
-    <color name="sub_color_yellow">#FDCC1D</color>
+    <color name="main_color_black">#232323</color>
     <color name="sub_color_green">#F4F8F3</color>
     <color name="sub_color_orange">#FFF7ED</color>
+    <color name="sub_color_gray">#858585</color>
 
 
 </resources>

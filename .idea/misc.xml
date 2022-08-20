@@ -12,8 +12,19 @@
         <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/drawable/border_diary_exist_orange.xml" value="0.192" />
         <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/drawable/border_diary_layout.xml" value="0.192" />
         <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/drawable/border_diary_layout_green.xml" value="0.192" />
+        <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/drawable/border_diary_layout_green_selected.xml" value="0.22" />
         <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/drawable/border_diary_layout_orange.xml" value="0.192" />
+        <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/drawable/border_diary_layout_orange_selected.xml" value="0.22" />
+        <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/drawable/border_floating_button.xml" value="0.22" />
         <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/drawable/border_img.xml" value="0.192" />
+        <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/drawable/border_name_tag.xml" value="0.22" />
+        <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/drawable/border_name_tag_animal.xml" value="0.22" />
+        <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/drawable/border_name_tag_plant.xml" value="0.22" />
+        <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/drawable/ic_background_green.xml" value="0.22" />
+        <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/drawable/ic_camera.xml" value="0.193" />
+        <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/drawable/ic_group_9.xml" value="0.129" />
+        <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/drawable/icon_background_green.xml" value="0.129" />
+        <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/drawable/icon_camera.xml" value="0.193" />
         <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/drawable/nametag_check_inactive.xml" value="0.192" />
         <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/drawable/nametag_checkbox.xml" value="0.192" />
         <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/layout/activity_main.xml" value="0.15307971014492755" />
@@ -21,14 +32,18 @@
         <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/layout/activity_write_diary.xml" value="0.25" />
         <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/layout/checkbox_active.xml" value="0.18489583333333334" />
         <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/layout/checkbox_inactive.xml" value="0.33" />
-        <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/layout/dialog_write_diary.xml" value="0.25" />
-        <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/layout/fragment_calendar.xml" value="0.22" />
-        <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/layout/fragment_diary.xml" value="0.25" />
+        <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/layout/dialog_write_diary.xml" value="0.22" />
+        <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/layout/fragment_calendar.xml" value="0.2" />
+        <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/layout/fragment_diary.xml" value="0.33" />
         <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/layout/fragment_profile.xml" value="0.18645833333333334" />
         <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/layout/item_day.xml" value="1.0" />
+        <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/layout/item_diary_animal.xml" value="0.75" />
+        <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/layout/item_diary_plant.xml" value="0.5" />
         <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/layout/item_img.xml" value="1.25" />
         <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/layout/item_month.xml" value="0.22" />
         <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/layout/item_month_rv.xml" value="0.18645833333333334" />
+        <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/layout/item_name_tag_animal.xml" value="0.2390625" />
+        <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/layout/item_name_tag_plant.xml" value="0.9" />
         <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/layout/item_nametag.xml" value="0.5" />
         <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/layout/item_nametag_checkbox.xml" value="0.5" />
         <entry key="..\:/Users/82104/Desktop/companion-diary-frontend/app/src/main/res/layout/toolbar_write_diary.xml" value="0.25" />
