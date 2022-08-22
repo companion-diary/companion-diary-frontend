@@ -64,7 +64,7 @@
             android:fontFamily="@font/noto_sans_kr_regular"
             android:includeFontPadding="false"
             android:maxLines="2"
-            android:text="오늘 물을 주는데 파란 이파리가 생생한 초록빛이여서 기분이 너무너무 좋았다."
+            android:text="호두가 자면서 혓바닥을 내밀었다. 너무 귀여워서 사진을 찍었다."
             android:textColor="@color/sub_color_gray"
             android:textSize="10sp" />
 

@@ -3,7 +3,7 @@ package com.example.companion_diary.diary
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.companion_diary.databinding.ItemNametagCheckboxBinding
+import com.example.companion_diary.databinding.ItemNameTagCheckboxBinding
 
 /***
  * 이름 및 내용 다시 설정
@@ -12,7 +12,7 @@ import com.example.companion_diary.databinding.ItemNametagCheckboxBinding
 class NameTagRVAdapter(private var nameTagList: ArrayList<String>): RecyclerView.Adapter<NameTagRVAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemNametagCheckboxBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemNameTagCheckboxBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -22,7 +22,7 @@ class NameTagRVAdapter(private var nameTagList: ArrayList<String>): RecyclerView
 
     override fun getItemCount(): Int = nameTagList.size
 
-    inner class ViewHolder(val binding: ItemNametagCheckboxBinding) : RecyclerView.ViewHolder(binding.root){
+    inner class ViewHolder(val binding: ItemNameTagCheckboxBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(nameTag:String){
             binding.nameTagTv.text = nameTag
         }
