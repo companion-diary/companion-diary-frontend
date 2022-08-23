@@ -130,8 +130,14 @@ class WriteDiaryActivity:AppCompatActivity(), PermissionListener {
         TedBottomPicker.with(this)
             .setPeekHeight(1600)
             .showTitle(false)
-            .setCompleteButtonText("Done")
-            .setEmptySelectionText("No Select")
+            .setCompleteButtonText("등록")
+            .setTitle("사진 선택")
+            .setSelectMaxCount(10)
+            .setSpacing(10)
+            .setEmptySelectionText("")
+            .setSelectMaxCountErrorText("사진은 10장까지 등록 가능합니다.")
+            .showCameraTile(false)
+            .setIncludeEdgeSpacing(true)
             .setSelectedUriList(imgList)
             .showMultiImage(object: TedBottomSheetDialogFragment.OnMultiImageSelectedListener{
                 override fun onImagesSelected(uriList: MutableList<Uri>?) {

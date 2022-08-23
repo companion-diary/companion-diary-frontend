@@ -48,13 +48,6 @@ class CalendarFragment: Fragment() {
                     ?.let { binding.monthTv.setTextColor(it) }
             }
         }
-//        binding.itemMonthLayout.alpha = 0.5f
-//        binding.itemMonthLayout.setBackgroundResource(
-//            when(month.toInt()%2){
-//                0 -> R.drawable.border_diary_layout_orange_selected
-//                else -> R.drawable.border_diary_layout_green_selected
-//            }
-//        )
 
         binding.calendarView.initCalendar(DateTime(millis),getMonthList(DateTime(millis)))
         return binding.root

@@ -62,16 +62,6 @@ class DiaryFragment : Fragment() {
              * padding 설정
              */
             setPadding(0,0,0,280)
-
-//            registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback(){
-//                override fun onPageSelected(position: Int) {
-//                    super.onPageSelected(position)
-//                    binding.calendar.setBackgroundResource(R.drawable.border_diary_layout_green_selected)
-//                    val bundle = Bundle()
-//                    bundle.putInt("currentItem",position)
-//                }
-//            })
-
         }
     }
 
