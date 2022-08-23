@@ -140,6 +140,7 @@ class DayItemView @JvmOverloads constructor(
         companionRv?.apply{
             adapter = nameTagListAdapter
             layoutManager = nameTagListManager
+            addItemDecoration(DiaryItemDecoration(context, 23f))
         }
 
         /**
@@ -158,7 +159,7 @@ class DayItemView @JvmOverloads constructor(
         diaryRv?.apply{
             adapter = diaryListAdapter
             layoutManager = diaryListManager
-            addItemDecoration(DiaryItemDecoration(context))
+            addItemDecoration(DiaryItemDecoration(context,10f))
         }
 
 
