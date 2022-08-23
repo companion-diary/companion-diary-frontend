@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.companion_diary.R
-import com.example.companion_diary.databinding.ItemNameTagCheckboxBinding
+import com.example.companion_diary.databinding.ItemNameTagRadioButtonBinding
 import com.gun0912.tedpermission.provider.TedPermissionProvider.context
 
 /***
@@ -18,7 +18,7 @@ class NameTagRVAdapter(private var nameTagList: ArrayList<String>): RecyclerView
     private var checkPosition = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemNameTagCheckboxBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemNameTagRadioButtonBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -29,7 +29,7 @@ class NameTagRVAdapter(private var nameTagList: ArrayList<String>): RecyclerView
 
     override fun getItemCount(): Int = nameTagList.size
 
-    inner class ViewHolder(val binding: ItemNameTagCheckboxBinding) : RecyclerView.ViewHolder(binding.root){
+    inner class ViewHolder(val binding: ItemNameTagRadioButtonBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(position: Int){
             binding.nameTagTv.text = nameTagList[position]
             /**

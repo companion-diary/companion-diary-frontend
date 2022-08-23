@@ -19,8 +19,9 @@
         android:text="호두"
         android:textColor="@color/main_color_orange"
         android:textSize="12sp"
+        android:layout_marginStart="7dp"
         app:layout_constraintBottom_toBottomOf="@id/ic_iv"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ic_iv"
         app:layout_constraintTop_toTopOf="@id/ic_iv" />
 
     <ImageView
@@ -29,8 +30,9 @@
         android:layout_height="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
+        android:layout_marginStart="10dp"
         android:src="@drawable/ic_animal"
-        app:layout_constraintEnd_toStartOf="@id/item_diary_name_tag_tv"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
