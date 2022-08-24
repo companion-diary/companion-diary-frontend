@@ -80,10 +80,10 @@
         <ImageButton
             android:id="@+id/loginBtn"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_width="309.03dp"
-            android:layout_height="46.35dp"
+            android:layout_width="310dp"
+            android:layout_height="50dp"
             android:layout_marginTop="82dp"
-            android:src="@drawable/kakao_login_medium_wide"
+            android:src="@drawable/kakao_login_btn_resize"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title"
