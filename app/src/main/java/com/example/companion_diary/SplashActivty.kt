@@ -8,7 +8,7 @@ import android.os.Handler
 class SplashActivty : AppCompatActivity() {
 
     companion object {
-        private const val DURATION : Long = 3000 //splash 지속시간 3초
+        private const val DURATION : Long = 2000 //splash 지속시간 2초
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
