@@ -6,11 +6,13 @@ import android.content.Intent
 import android.graphics.*
 import android.text.TextPaint
 import android.util.AttributeSet
+import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.AttrRes
 import androidx.annotation.StyleRes
 import androidx.core.content.withStyledAttributes
@@ -42,6 +44,7 @@ class DayItemView @JvmOverloads constructor(
     private val bounds = Rect()
     private var textPaint: Paint = Paint()
     private var dotPaint: Paint = Paint()
+    private var nameTagText: String = ""
 
     init {
         context.withStyledAttributes(attrs, R.styleable.CalendarView, defStyleAttr, defStyleRes) {
@@ -142,6 +145,11 @@ class DayItemView @JvmOverloads constructor(
             layoutManager = nameTagListManager
             addItemDecoration(DiaryItemDecoration(context, 23f))
         }
+        nameTagListAdapter.setMyItemSelectedListener(object: NameTagRVAdapter.MyItemSelectedListener{
+            override fun onItemSelected(nameTag: String) {
+                nameTagText = nameTag
+            }
+        })
 
         /**
          * 날짜에 맞는 일기 리스트 전부 받아오기
@@ -168,19 +176,27 @@ class DayItemView @JvmOverloads constructor(
          * 일기 쓰기 버튼 클릭 시 일기 쓰기 화면으로 이동
          */
         prevBtn?.setOnClickListener {
+            nameTagText = ""
             dialog.dismiss()
         }
         writeDiaryBtn?.setOnClickListener {
             var intent = Intent(context, WriteDiaryActivity::class.java)
-            intent.putExtra("dayOfMonth", dayOfMonth)
-            intent.putExtra("monthOfYear", monthOfYear)
-            intent.putExtra("year", year)
-            context.startActivity(intent)
-            dialog.dismiss()
+            if(nameTagText == ""){
+                Toast.makeText(context, "어떤 친구의 하루를 작성할지 선택해주세요",Toast.LENGTH_SHORT).show()
+            }
+            else{
+                intent.putExtra("dayOfMonth", dayOfMonth)
+                intent.putExtra("monthOfYear", monthOfYear)
+                intent.putExtra("year", year)
+                intent.putExtra("nameTag",nameTagText)
+                context.startActivity(intent)
+                dialog.dismiss()
+            }
         }
         dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
         dialog.behavior.skipCollapsed = true
         dialog.show()
     }
+
 
 }

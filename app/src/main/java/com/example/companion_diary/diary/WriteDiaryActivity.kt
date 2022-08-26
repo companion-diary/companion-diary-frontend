@@ -59,6 +59,11 @@ class WriteDiaryActivity:AppCompatActivity(), PermissionListener {
         //nameTagList = mIntent.getStringArrayListExtra("nameTagList") as ArrayList<String>
         //initNameTagRecyclerView(nameTagList)
         binding.yearMonthDateTv.text = dateTitle
+        /**
+         * 동식물 구분해서 background resource 변경
+         */
+        var nameTagText = mIntent.getStringExtra("nameTag")
+        binding.nameTagTv.text = nameTagText
 //        binding.registerBtn.setBackgroundDrawable(R.drawable.border_floating_button)
     }
 

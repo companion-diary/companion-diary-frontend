@@ -17,6 +17,18 @@ class NameTagRVAdapter(private var nameTagList: ArrayList<String>): RecyclerView
 
     private var checkPosition = -1
 
+    /**
+     * 선택된 이름 태그 데이터 전달용 interface 및 함수
+     */
+    interface MyItemSelectedListener{
+        fun onItemSelected(nameTag: String)
+    }
+    private lateinit var mItemSelectedListener: MyItemSelectedListener
+    fun setMyItemSelectedListener(itemSelectedListener: NameTagRVAdapter.MyItemSelectedListener){
+        mItemSelectedListener = itemSelectedListener
+    }
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemNameTagRadioButtonBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
@@ -68,6 +80,7 @@ class NameTagRVAdapter(private var nameTagList: ArrayList<String>): RecyclerView
             }
             binding.nameTagRb.setOnClickListener {
                 checkPosition = position
+                mItemSelectedListener.onItemSelected(nameTagList[position])
                 notifyDataSetChanged()
             }
         }
