@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/item_diary_layout"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/look_diary_icon_iv"
+        android:layout_width="29dp"
+        android:layout_height="29dp"
+        android:src="@drawable/ic_animal"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="25dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/look_diary_name_tag_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9.5dp"
+        android:fontFamily="@font/jalnan"
+        android:maxLines="1"
+        android:text="호두"
+        android:textColor="@color/main_color_orange"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/look_diary_icon_iv"
+        app:layout_constraintStart_toEndOf="@id/look_diary_icon_iv"
+        app:layout_constraintTop_toTopOf="@id/look_diary_icon_iv" />
+
+    <ImageView
+        android:id="@+id/look_diary_more_iv"
+        android:layout_width="5dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="25.84dp"
+        android:layout_marginEnd="37dp"
+        android:src="@drawable/ic_more"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/year_month_date_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:text="2022년 7월 30일"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:includeFontPadding="false"
+        android:layout_marginTop="14.7dp"
+        app:layout_constraintTop_toBottomOf="@id/look_diary_icon_iv"
+        app:layout_constraintStart_toStartOf="@id/look_diary_icon_iv"/>
+
+    <TextView
+        android:id="@+id/title_tv"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/jalnan"
+        android:lineSpacingExtra="10dp"
+        android:maxLength="20"
+        android:text="우리 호두는 왜 이렇게 귀여워?"
+        android:textColor="@color/main_color_black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/year_month_date_tv"
+        app:layout_constraintTop_toBottomOf="@id/year_month_date_tv" />
+
+<!--    <GridView-->
+<!--        />-->
+
+    <ImageView
+        android:id="@+id/temp"
+        android:layout_width="match_parent"
+        android:layout_height="151dp"
+        app:layout_constraintTop_toBottomOf="@id/title_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="25dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/contents_tv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/temp"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:textSize="14sp"
+        android:textColor="@color/sub_color_gray"
+        android:text=" 호두가 자면서 혓바닥을 내밀었다. 너무 귀여워서 사진을 한번 찍어보았다. 오늘 산책을 오래 했더니 많이 힘들었나보다. 물도 엄청 먹어댔는데 나중에 화장실 가고 싶어서 일어날 것 같긴 하다.
+빨리 일어나서 나랑 놀아주면 좋겠다. 호두는 어쩜 이름도 호두일까. 우리 이쁜이. 항상 건강하고
+행복하게 같이 살자 호두야~
+무슨 일 생기면 꼭 말해줘야해 ㅎㅎ"
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,7 +11,7 @@ import com.example.companion_diary.databinding.FragmentCalendarBinding
 import java.util.*
 import kotlin.math.abs
 
-class VPTransformer(): ViewPager2.PageTransformer {
+class CalendarVPTransformer(): ViewPager2.PageTransformer {
     override fun transformPage(view: View, position: Float) {
 
         val layout = view.findViewById<ConstraintLayout>(R.id.item_month_layout)

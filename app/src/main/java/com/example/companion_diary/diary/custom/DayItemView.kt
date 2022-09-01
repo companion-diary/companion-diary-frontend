@@ -162,7 +162,7 @@ class DayItemView @JvmOverloads constructor(
             add("연두")
             add("밀키")
         }
-        var diaryListAdapter = DiaryRVAdater(diaryList)
+        var diaryListAdapter = DiaryRVAdater(diaryList,context)
         var diaryListManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
         diaryRv?.apply{
             adapter = diaryListAdapter
