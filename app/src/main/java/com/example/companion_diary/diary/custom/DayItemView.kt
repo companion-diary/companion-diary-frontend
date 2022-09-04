@@ -15,6 +15,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.AttrRes
 import androidx.annotation.StyleRes
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.content.withStyledAttributes
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,6 +27,7 @@ import com.example.companion_diary.diary.DiaryItemDecoration
 import com.example.companion_diary.diary.DiaryRVAdater
 import com.example.companion_diary.diary.NameTagRVAdapter
 import com.example.companion_diary.diary.WriteDiaryActivity
+import com.example.companion_diary.diary.utils.CalendarUtils.Companion.checkToday
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import org.joda.time.DateTime
@@ -45,11 +47,16 @@ class DayItemView @JvmOverloads constructor(
     private var textPaint: Paint = Paint()
     private var dotPaint: Paint = Paint()
     private var nameTagText: String = ""
+    private var today : DateTime = DateTime()
 
     init {
         context.withStyledAttributes(attrs, R.styleable.CalendarView, defStyleAttr, defStyleRes) {
             val dayTextSize =
                 getDimensionPixelSize(R.styleable.CalendarView_dayTextSize, 0).toFloat()
+            val todayTextSize =
+                getDimensionPixelSize(R.styleable.CalendarView_todayTextSize,0).toFloat()
+            val todayFont = ResourcesCompat.getFont(context,R.font.noto_sans_kr_bold)
+            val textByDate = checkToday(today,date)
 
             textPaint = TextPaint().apply {
                 isAntiAlias = true
@@ -57,6 +64,14 @@ class DayItemView @JvmOverloads constructor(
                 color = getDateColor(date.dayOfWeek)
                 if (!isSameMonth(date, firstDayOfMonth)) {
                     visibility = GONE
+                }
+                when (textByDate){
+                    0 -> alpha = 100
+                    1 -> {
+                        textSize = todayTextSize
+                        typeface = todayFont
+                    }
+                    else -> {}
                 }
             }
             dotPaint = Paint().apply {
@@ -67,6 +82,7 @@ class DayItemView @JvmOverloads constructor(
                 }
                 strokeWidth = 12f
                 strokeCap = Paint.Cap.ROUND
+                if(textByDate == 0) alpha = 100
             }
         }
     }

@@ -5,5 +5,6 @@
         <attr name="itemViewStyle" format="reference" />
         <attr name="dayHeight" format="dimension"/>
         <attr name="dayTextSize" format="dimension"/>
+        <attr name="todayTextSize" format="dimension"/>
     </declare-styleable>
 </resources>

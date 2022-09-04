@@ -33,6 +33,7 @@
 
     <style name="Calendar.ItemViewStyle">
         <item name="dayTextSize">18dp</item>
+        <item name="todayTextSize">20dp</item>
     </style>
 
 </resources>

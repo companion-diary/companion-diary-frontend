@@ -68,5 +68,15 @@ class CalendarUtils {
              */
             return false
         }
+
+        fun checkToday(today: DateTime, date: DateTime): Int {
+            return when{
+                (today.year > date.year ||
+                        (today.year == date.year && today.monthOfYear > date.monthOfYear) ||
+                        (today.year == date.year && today.monthOfYear == date.monthOfYear && today.dayOfMonth > date.dayOfMonth)) -> 0
+                (today.year == date.year && today.monthOfYear == date.monthOfYear && today.dayOfMonth == date.dayOfMonth) -> 1
+                else -> 2
+            }
+        }
     }
 }
