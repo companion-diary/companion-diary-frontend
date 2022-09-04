@@ -50,7 +50,7 @@ class NameTagRVAdapter(private var nameTagList: ArrayList<String>): RecyclerView
             when(position%2){
                 0 -> {
                     binding.nameTagTv.setTextColor(context.getColor(R.color.main_color_orange))
-                    binding.checkedBorderIv.setImageResource(R.drawable.border_name_tag_checked_animal)
+                    binding.checkedBorderIv.setImageResource(R.drawable.name_tag_selected_animal)
                     binding.iconIv.setImageResource(R.drawable.ic_animal)
                     binding.profileIv.setImageResource(R.drawable.img) // profile img
                     binding.profileIv.setBackgroundResource(R.drawable.border_name_tag_img)
@@ -59,7 +59,7 @@ class NameTagRVAdapter(private var nameTagList: ArrayList<String>): RecyclerView
                 }
                 1 -> {
                     binding.nameTagTv.setTextColor(context.getColor(R.color.main_color_green))
-                    binding.checkedBorderIv.setImageResource(R.drawable.border_name_tag_checked_plant)
+                    binding.checkedBorderIv.setImageResource(R.drawable.name_tag_selected_plant)
                     binding.iconIv.setImageResource(R.drawable.ic_plant)
                     binding.profileIv.setImageResource(R.drawable.img_1) // profile img
                     binding.profileIv.setBackgroundResource(R.drawable.border_name_tag_img)
