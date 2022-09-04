@@ -1,6 +1,7 @@
 package com.example.companion_diary.diary
 
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
@@ -9,6 +10,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -69,7 +71,19 @@ class WriteDiaryActivity:AppCompatActivity(), PermissionListener {
 
     private fun initClickListener(){
         binding.writeDiaryToolbar.cancelBtn.setOnClickListener {
-            finish()
+            val dialog = AlertDialog.Builder(this)
+            dialog.setMessage("기록한 내용은 저장되지 않습니다.\n그래도 나가시겠습니까?")
+                .setPositiveButton("나가기",object: DialogInterface.OnClickListener{
+                    override fun onClick(p0: DialogInterface?, p1: Int) {
+                        finish()
+                    }
+                })
+                .setNegativeButton("취소", object: DialogInterface.OnClickListener{
+                    override fun onClick(p0: DialogInterface?, p1: Int) {
+                        p0!!.dismiss()
+                    }
+                })
+            dialog.show()
         }
         binding.writeDiaryToolbar.moreBtn.setOnClickListener {
 //            val sharedPreferences = getSharedPreferences("${mIntent.getStringExtra("month")}", MODE_PRIVATE)
