@@ -65,41 +65,48 @@
         app:layout_constraintStart_toStartOf="@id/year_month_date_tv"
         app:layout_constraintTop_toBottomOf="@id/year_month_date_tv" />
 
-<!--    <GridView-->
-<!--        />-->
-
-    <ImageView
-        android:id="@+id/temp"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/img_vp"
         android:layout_width="match_parent"
-        android:layout_height="151dp"
+        android:layout_height="220dp"
         app:layout_constraintTop_toBottomOf="@id/title_tv"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="25dp"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="10dp"/>
+
+<!--    <com.tbuonomo.viewpagerdotsindicator.DotsIndicator-->
+<!--        android:id="@+id/vp_dot_indicator"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginBottom="15dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/img_vp"-->
+<!--        app:layout_constraintStart_toStartOf="@id/img_vp"-->
+<!--        app:layout_constraintEnd_toEndOf="@id/img_vp"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/contents_tv"-->
+<!--        app:dotsColor="@color/unselected_dot_color"-->
+<!--        app:selectedDotColor="@color/main_color_orange"-->
+<!--        app:dotsSize="6dp"-->
+<!--        app:dotsSpacing="5dp"-->
+<!--        app:progressMode="true"-->
+<!--        app:dotsCornerRadius="8dp"/>-->
 
     <TextView
         android:id="@+id/contents_tv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/temp"
         android:fontFamily="@font/noto_sans_kr_regular"
         android:textSize="14sp"
         android:textColor="@color/sub_color_gray"
-        android:text=" 호두가 자면서 혓바닥을 내밀었다. 너무 귀여워서 사진을 한번 찍어보았다. 오늘 산책을 오래 했더니 많이 힘들었나보다. 물도 엄청 먹어댔는데 나중에 화장실 가고 싶어서 일어날 것 같긴 하다.
+        android:text=" 호두가 자면서 혓바닥을 내밀었다. 너무 귀여워서 사진을 한번 찍어보았다. 오늘 산책을 오래 했더니 많이 힘들었나보다. 물도 엄청 먹어댔는데 나중에 화장실 가고 싶어서 일어날 것 같긴 하다.\n
 빨리 일어나서 나랑 놀아주면 좋겠다. 호두는 어쩜 이름도 호두일까. 우리 이쁜이. 항상 건강하고
 행복하게 같이 살자 호두야~
 무슨 일 생기면 꼭 말해줘야해 ㅎㅎ"
-        android:layout_marginTop="18dp"
+        android:scrollbars="vertical"
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"/>
-
-
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,6 +22,7 @@
     <color name="sub_color_green">#F4F8F3</color>
     <color name="sub_color_orange">#FFF7ED</color>
     <color name="sub_color_gray">#858585</color>
+    <color name="unselected_dot_color">#D9D9D9</color>
 
 
 </resources>
