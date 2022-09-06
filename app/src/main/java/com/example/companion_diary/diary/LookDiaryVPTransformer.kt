@@ -14,6 +14,7 @@ class LookDiaryVPTransformer: ViewPager2.PageTransformer {
         var icon = view.findViewById<ImageView>(R.id.look_diary_icon_iv)
         var nameTag = view.findViewById<TextView>(R.id.look_diary_name_tag_tv)
         var moreBtn = view.findViewById<ImageView>(R.id.look_diary_more_iv)
+        var content = view.findViewById<TextView>(R.id.contents_tv)
 
         /**
          * prev, next item에서 이름태그와 더보기 버튼 안보이게 설정
@@ -24,11 +25,13 @@ class LookDiaryVPTransformer: ViewPager2.PageTransformer {
                     icon.visibility = View.INVISIBLE
                     nameTag.visibility = View.INVISIBLE
                     moreBtn.visibility = View.INVISIBLE
+                    content.visibility = View.INVISIBLE
                 }
                 else -> {
                     icon.visibility = View.VISIBLE
                     nameTag.visibility = View.VISIBLE
                     moreBtn.visibility = View.VISIBLE
+                    content.visibility = View.VISIBLE
                 }
             }
 

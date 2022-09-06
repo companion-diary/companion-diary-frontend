@@ -7,5 +7,5 @@ data class Diary(
     var title: String,
     var content: String,
     var tag: String, // 또는 동식물 data class
-    var imgList: ArrayList<Uri>? = null
+    var imgList: ArrayList<Uri>
 )

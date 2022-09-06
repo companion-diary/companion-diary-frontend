@@ -88,7 +88,7 @@
         app:selectedDotColor="@color/main_color_orange"
         app:dotsSize="6dp"
         app:dotsSpacing="5dp"
-        app:progressMode="true"
+        app:progressMode="false"
         app:dotsCornerRadius="8dp"/>
 
     <TextView
@@ -102,6 +102,7 @@
 빨리 일어나서 나랑 놀아주면 좋겠다. 호두는 어쩜 이름도 호두일까. 우리 이쁜이. 항상 건강하고
 행복하게 같이 살자 호두야~
 무슨 일 생기면 꼭 말해줘야해 ㅎㅎ"
+        android:includeFontPadding="false"
         android:scrollbars="vertical"
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
