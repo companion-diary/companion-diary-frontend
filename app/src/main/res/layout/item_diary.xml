@@ -74,22 +74,22 @@
         android:layout_marginEnd="25dp"
         android:layout_marginTop="10dp"/>
 
-<!--    <com.tbuonomo.viewpagerdotsindicator.DotsIndicator-->
-<!--        android:id="@+id/vp_dot_indicator"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:layout_marginBottom="15dp"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/img_vp"-->
-<!--        app:layout_constraintStart_toStartOf="@id/img_vp"-->
-<!--        app:layout_constraintEnd_toEndOf="@id/img_vp"-->
-<!--        app:layout_constraintBottom_toTopOf="@id/contents_tv"-->
-<!--        app:dotsColor="@color/unselected_dot_color"-->
-<!--        app:selectedDotColor="@color/main_color_orange"-->
-<!--        app:dotsSize="6dp"-->
-<!--        app:dotsSpacing="5dp"-->
-<!--        app:progressMode="true"-->
-<!--        app:dotsCornerRadius="8dp"/>-->
+    <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+        android:id="@+id/vp_dot_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintTop_toBottomOf="@id/img_vp"
+        app:layout_constraintStart_toStartOf="@id/img_vp"
+        app:layout_constraintEnd_toEndOf="@id/img_vp"
+        app:layout_constraintBottom_toTopOf="@id/contents_tv"
+        app:dotsColor="@color/unselected_dot_color"
+        app:selectedDotColor="@color/main_color_orange"
+        app:dotsSize="6dp"
+        app:dotsSpacing="5dp"
+        app:progressMode="true"
+        app:dotsCornerRadius="8dp"/>
 
     <TextView
         android:id="@+id/contents_tv"
@@ -106,6 +106,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="20dp"
+        app:layout_constraintTop_toBottomOf="@id/vp_dot_indicator"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 
