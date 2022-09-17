@@ -12,6 +12,20 @@
         <entry key="..\:/Users/82107/AndroidStudioProjects/companion-diary-frontend/app/src/main/res/layout/fragment_look.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/82107/AndroidStudioProjects/companion-diary-frontend/app/src/main/res/layout/fragment_search.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/82107/AndroidStudioProjects/companion-diary-frontend/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />
+        <entry key="app/src/main/res/drawable/bottomnav_background.xml" value="0.1525" />
+        <entry key="app/src/main/res/drawable/bottomnav_img_resize.xml" value="0.249" />
+        <entry key="app/src/main/res/drawable/bottomsheet_background.xml" value="0.1715" />
+        <entry key="app/src/main/res/drawable/diary_icon_selector.xml" value="0.249" />
+        <entry key="app/src/main/res/drawable/ic_android_black_24dp.xml" value="0.249" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.249" />
+        <entry key="app/src/main/res/drawable/main_icon_selector.xml" value="0.249" />
+        <entry key="app/src/main/res/drawable/setting_icon_selector.xml" value="0.249" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/bottomsheet_backgrond.xml" value="0.17119565217391305" />
+        <entry key="app/src/main/res/layout/fragment_alarm.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.19157608695652173" />
+        <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.19157608695652173" />
+        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.23020833333333332" />
       </map>
     </option>
   </component>

@@ -13,6 +13,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.mainBnv.itemIconTintList = null
+
         initBottomNavigation()
 
     }
@@ -26,32 +28,21 @@ class MainActivity : AppCompatActivity() {
         binding.mainBnv.setOnItemSelectedListener{ item ->
             when (item.itemId) {
 
-                R.id.storeFragment -> {
+                R.id.profileFragment -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_frm, StoreFragment())
+                        .replace(R.id.main_frm, ProfileFragment())
                         .commitAllowingStateLoss()
                     return@setOnItemSelectedListener true
                 }
 
-                R.id.communityFragment -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_frm, CommunityFragment())
-                        .commitAllowingStateLoss()
-                    return@setOnItemSelectedListener true
-                }
                 R.id.diaryFragment -> {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.main_frm, DiaryFragment())
                         .commitAllowingStateLoss()
                     return@setOnItemSelectedListener true
                 }
-                R.id.alarmFragment -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_frm, AlarmFragment())
-                        .commitAllowingStateLoss()
-                    return@setOnItemSelectedListener true
-                }
-                R.id.profileFragment -> {
+
+                R.id.settingFragment -> {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.main_frm, ProfileFragment())
                         .commitAllowingStateLoss()

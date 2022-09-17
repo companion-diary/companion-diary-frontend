@@ -5,18 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.companion_diary.databinding.FragmentLockerBinding
+import com.example.companion_diary.databinding.FragmentAlarmBinding
 
 class AlarmFragment : Fragment() {
 
-    lateinit var binding: FragmentLockerBinding
+    lateinit var binding: FragmentAlarmBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentLockerBinding.inflate(inflater, container, false)
+        binding = FragmentAlarmBinding.inflate(inflater, container, false)
 
         return binding.root
     }
