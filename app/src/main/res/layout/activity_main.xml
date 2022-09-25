@@ -9,29 +9,33 @@
     <FrameLayout
         android:id="@+id/main_frm"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toTopOf="@id/main_bnv"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toRightOf="parent"
         app:layout_constraintRight_toLeftOf="parent"/>
 
 
-
-
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/main_bnv"
-        android:layout_width="220dp"
-        android:layout_height="60dp"
+        android:layout_width="240dp"
+        android:layout_height="90dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingStart="33dp"
+        android:paddingEnd="33dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
         android:layout_margin="27.96dp"
-        android:background="@drawable/bottomnav_img_resize"
+        android:background="@drawable/bottomsheet_img"
         app:itemIconSize="30dp"
         android:elevation="40dp"
         app:labelVisibilityMode="unlabeled"
+        app:itemBackground="@drawable/bottomnav_indicator"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav_menu" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
