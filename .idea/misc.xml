@@ -14,7 +14,10 @@
         <entry key="..\:/Users/82107/AndroidStudioProjects/companion-diary-frontend/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/drawable/bottomnav_background.xml" value="0.1525" />
         <entry key="app/src/main/res/drawable/bottomnav_img_resize.xml" value="0.249" />
+        <entry key="app/src/main/res/drawable/bottomnav_indicator.xml" value="0.1035" />
+        <entry key="app/src/main/res/drawable/bottomnav_indicator_green.xml" value="0.1625" />
         <entry key="app/src/main/res/drawable/bottomsheet_background.xml" value="0.1715" />
+        <entry key="app/src/main/res/drawable/bottomsheet_with_shadow.xml" value="0.169" />
         <entry key="app/src/main/res/drawable/diary_icon_selector.xml" value="0.249" />
         <entry key="app/src/main/res/drawable/ic_android_black_24dp.xml" value="0.249" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.249" />

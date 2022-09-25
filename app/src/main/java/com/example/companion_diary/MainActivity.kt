@@ -2,6 +2,7 @@ package com.example.companion_diary
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.view.isNotEmpty
 import com.example.companion_diary.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -17,6 +18,12 @@ class MainActivity : AppCompatActivity() {
 
         initBottomNavigation()
 
+
+//        if (binding.mainBnv.isNotEmpty()) {
+//           binding.mainBnv.itemBackgroundResource = R.drawable.bottomnav_indicator_green
+//        }
+
+
     }
 
     private fun initBottomNavigation(){
@@ -29,6 +36,7 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
 
                 R.id.profileFragment -> {
+                    binding.mainBnv.itemBackgroundResource = R.drawable.bottomnav_indicator
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.main_frm, ProfileFragment())
                         .commitAllowingStateLoss()
@@ -36,6 +44,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.diaryFragment -> {
+                    binding.mainBnv.itemBackgroundResource = R.drawable.bottomnav_indicator_green
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.main_frm, DiaryFragment())
                         .commitAllowingStateLoss()
@@ -43,6 +52,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.settingFragment -> {
+                    binding.mainBnv.itemBackgroundResource = R.drawable.bottomnav_indicator
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.main_frm, ProfileFragment())
                         .commitAllowingStateLoss()
