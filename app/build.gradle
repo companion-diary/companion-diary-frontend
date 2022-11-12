@@ -16,6 +16,10 @@ android {
     viewBinding {
         enabled true
     }
+    dataBinding {
+        enabled = true
+    }
+
     defaultConfig {
         applicationId "com.example.companion_diary"
         minSdk 26
@@ -82,5 +86,11 @@ dependencies {
     //coroutine
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1"
 
-//    implementation  "androidx.compose.runtime:runtime:1.2.0@aar"
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    // gson converter - required
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
+
+
 }

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <LinearLayout
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/user_info_layout"
+        >
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/profile_iv"
+            android:src="@drawable/community_animal_profile_img"
+            android:layout_marginEnd="10.53dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="말티즈"
+            android:fontFamily="@font/notosanskrregular"
+            android:textColor="#858585"
+            android:layout_marginStart="10.53dp"
+            android:includeFontPadding="false"
+            android:id="@+id/user_animal_tv"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="민민"
+            android:fontFamily="@font/notosanskrregular"
+            android:textColor="#858585"
+            android:layout_marginStart="8.79dp"
+            android:includeFontPadding="false"
+            android:id="@+id/user_name_tv"
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/community_post_menu_btn"
+            android:layout_width="5dp"
+            android:layout_height="20dp"
+            android:background="@drawable/community_post_menu_icon_resize"
+            android:layout_gravity="center"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="310dp"
+        android:layout_height="244.23dp"
+        android:src="@drawable/community_animal_show_off_img1"
+        app:layout_constraintTop_toBottomOf="@+id/user_info_layout"
+        android:layout_marginTop="9.8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/community_animal_show_off_iv"
+        />
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/img_position_layout"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/community_animal_show_off_iv"-->
+<!--        android:orientation="horizontal"-->
+<!--        >-->
+<!--        -->
+<!--        <ImageView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/community_img_position_icon_resize"-->
+<!--            -->
+<!--        -->
+<!--    </LinearLayout>-->
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

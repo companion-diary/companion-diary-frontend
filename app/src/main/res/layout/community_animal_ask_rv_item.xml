@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <LinearLayout
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/user_info_layout"
+        >
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/profile_iv"
+        android:src="@drawable/community_animal_profile_img"
+        android:layout_marginEnd="10.53dp"
+         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="골든 리트리버"
+        android:fontFamily="@font/notosanskrregular"
+        android:textColor="#858585"
+        android:layout_marginStart="10.53dp"
+        android:includeFontPadding="false"
+        />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/community_post_menu_btn"
+            android:layout_width="5dp"
+            android:layout_height="20dp"
+            android:background="@drawable/community_post_menu_icon_resize"
+            android:layout_gravity="center"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="310dp"
+        android:layout_height="244.23dp"
+        android:src="@drawable/community_animal_post_img_1"
+        app:layout_constraintTop_toBottomOf="@+id/user_info_layout"
+        android:layout_marginTop="9.8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/community_animal_ask_iv"
+        />
+
+    <TextView
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/community_animal_ask_tv"
+        android:text="산책 나오면 항상 바닥에 몸을 부비는 우리 애기...\n
+문제는 목욕하고 야외배변 나갈 때도 예외 없이 부벼요...ㅜ 어떻게 방법이 없을까요??ㅜㅜ"
+        app:layout_constraintTop_toBottomOf="@+id/community_animal_ask_iv"
+        android:layout_marginTop="15.49dp"
+        android:textSize="14sp"
+        android:textColor="#484848"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <LinearLayout
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/community_post_info_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/community_animal_ask_tv">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2022-08-13"
+        android:id="@+id/community_post_date_tv"
+        android:textSize="14sp"
+        android:textColor="#858585"
+        android:fontFamily="@font/notosanskrregular"
+        android:includeFontPadding="false"
+        />
+
+        <ImageView
+            android:layout_width="17.67dp"
+            android:layout_height="14.99dp"
+            android:id="@+id/community_post_comment_iv"
+            android:src="@drawable/community_comment_icon"
+            android:layout_marginStart="20.25dp"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="50"
+            android:layout_marginStart="5.81dp"
+            android:fontFamily="@font/notosanskrregular"
+            android:includeFontPadding="false"
+            android:textSize="14sp"
+            android:textColor="#858585"
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="민민"
+            android:fontFamily="@font/notosanskrregular"
+            android:includeFontPadding="false"
+            android:textSize="14sp"
+            android:textColor="#858585"
+            />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

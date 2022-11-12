@@ -4,9 +4,11 @@ import android.app.Application
 import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.*
+import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
+import com.kakao.sdk.common.model.KakaoSdkError
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -38,10 +40,10 @@ class KakaoAuthViewModel(application : Application) : AndroidViewModel(applicati
         }
     }
 
+
     private suspend fun handleKakaoLogin() : String =
 
         suspendCoroutine<String> { continuation ->
-            // 로그인 조합 예제
 
             // 카카오계정으로 로그인 공통 callback 구성
             // 카카오톡으로 로그인 할 수 없어 카카오계정으로 로그인할 경우 사용됨
@@ -55,6 +57,7 @@ class KakaoAuthViewModel(application : Application) : AndroidViewModel(applicati
                     continuation.resume(token.accessToken)
                 }
             }
+
 
             // 카카오톡이 설치되어 있으면 카카오톡으로 로그인, 아니면 카카오계정으로 로그인
             if (UserApiClient.instance.isKakaoTalkLoginAvailable(context)) {
