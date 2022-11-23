@@ -38,6 +38,7 @@
         <entry key="app/src/main/res/layout/fragment_community_animal_ask.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_community_animal_show_off.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.1" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.10750695088044486" />
       </map>
     </option>
