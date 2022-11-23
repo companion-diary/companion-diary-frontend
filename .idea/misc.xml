@@ -17,6 +17,7 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.165" />
         <entry key="app/src/main/res/drawable/back_press_arrow_btn_resize.xml" value="0.165" />
         <entry key="app/src/main/res/drawable/bottomnav_background.xml" value="0.1575" />
+        <entry key="app/src/main/res/drawable/bottomnav_indicator.xml" value="0.1275" />
         <entry key="app/src/main/res/drawable/check_box_selector.xml" value="0.1965" />
         <entry key="app/src/main/res/drawable/community_btn_selector.xml" value="0.141" />
         <entry key="app/src/main/res/drawable/community_floating_action_icon_resize.xml" value="0.165" />
@@ -27,6 +28,7 @@
         <entry key="app/src/main/res/drawable/kakao_login_btn_resize.xml" value="0.199" />
         <entry key="app/src/main/res/drawable/main_icon_selector.xml" value="0.1575" />
         <entry key="app/src/main/res/drawable/searchicon_resize.xml" value="0.1425" />
+        <entry key="app/src/main/res/drawable/setting_icon_selector.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/write_post_profile_img_resize.xml" value="0.165" />
         <entry key="app/src/main/res/drawable/write_post_profile_other_img_resize.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.16" />

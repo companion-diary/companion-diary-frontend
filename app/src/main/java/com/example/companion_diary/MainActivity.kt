@@ -12,19 +12,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
+        binding.mainBnv.itemIconTintList = null
         initBottomNavigation()
 
     }
 
-    private fun initBottomNavigation(){
+    private fun initBottomNavigation() {
 
         supportFragmentManager.beginTransaction()
             .replace(R.id.main_frm, StoreFragment())
             .commitAllowingStateLoss()
 
-        binding.mainBnv.setOnItemSelectedListener{ item ->
+        binding.mainBnv.setOnItemSelectedListener { item ->
             when (item.itemId) {
 
                 R.id.profileFragment -> {
