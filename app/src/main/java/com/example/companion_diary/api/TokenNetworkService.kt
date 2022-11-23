@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object TokenNetworkService {
 
-    private const val BASE_URL = "http://220.84.249.183:13000/"
+    private const val BASE_URL = "http://3.35.48.125:80/"
 
     var auth_token : String = ""
 

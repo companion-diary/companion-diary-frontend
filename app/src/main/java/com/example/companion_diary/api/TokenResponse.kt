@@ -10,6 +10,6 @@ data class TokenResponse (
 
 data class JwtData (
 
-    @SerializedName("jwt") val jwt : String
+    @SerializedName("x-access-token") val jwt : String
 
     )

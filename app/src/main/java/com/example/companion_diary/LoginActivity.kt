@@ -34,128 +34,59 @@ import kotlin.coroutines.CoroutineContext
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityLoginBinding
-    lateinit var kakaoAuthViewModel : KakaoAuthViewModel
+    private lateinit var binding: ActivityLoginBinding
+    lateinit var kakaoAuthViewModel: KakaoAuthViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        val checkBox : CheckBox = binding.rememberMeCb
-//        checkBox.setButtonDrawable(R.drawable.check_box_selector)
+        UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
+            if (error != null) {
+                Toast.makeText(this, "토큰 정보 보기 실패", Toast.LENGTH_SHORT).show()
+                kakaoAuthViewModel = ViewModelProvider(this).get(KakaoAuthViewModel::class.java)
+                kakaoAuthViewModel.currentToken.observe(this, Observer {
+                    if (it.isNotEmpty()) {
+                        //토큰 전송 함수 호출
+                        //토큰 전송 후 토큰 유효 여부를 확인한 후에 페이지 이동
 
-//        kakaoAuthViewModel = ViewModelProvider(this).get(KakaoAuthViewModel::class.java)
-//
-//        kakaoAuthViewModel.currentToken.observe(this, Observer{
-//            if(it.isNotEmpty()){
-//                //토큰 전송 함수 호출
-//                //토큰 전송 후 토큰 유효 여부를 확인한 후에 페이지 이동
-//                sendTokenInfo(it)
-//                val intent = Intent(this, MainActivity::class.java)
-//                startActivity(intent)
-//            } else if(it == "error") {
-//
-//                val builder = AlertDialog.Builder(this)
-//
-//                builder.setTitle("로그인 오류")
-//                    .setMessage("로그인에 실패하였습니다. 로그인을 다시 진행해주세요.")
-//                    .setPositiveButton("확인", DialogInterface.OnClickListener { dialog , i ->
-//                    })
-//                val alertDialog = builder.create()
-//                alertDialog.show()
-//
-//            }
-//        })
+                        if (it != "error") {
+                            lifecycleScope.launch {
 
-        kakaoAuthViewModel = ViewModelProvider(this).get(KakaoAuthViewModel::class.java)
+                                val result = withContext(Dispatchers.IO) {
 
-        kakaoAuthViewModel.currentToken.observe(this, Observer{
-            if(it.isNotEmpty()){
-                //토큰 전송 함수 호출
-                //토큰 전송 후 토큰 유효 여부를 확인한 후에 페이지 이동
-
-                    if(it != "error"){
-                        lifecycleScope.launch {
-
-                            val result = withContext(Dispatchers.IO) {
-
-                                TokenNetworkService.auth_token = it
-                                TokenNetworkService.service.getTokenResult()
-                            }
-                            val answer = result.result.jwt
-                            if (answer.isNotEmpty()) {
-                                Log.d("answer", answer)
-                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                                startActivity(intent)
-                            }
-                            else{
-//                        val builder = AlertDialog.Builder(this)
-//
-//                        builder.setTitle("로그인 오류")
-//                            .setMessage("로그인에 실패하였습니다. 로그인을 다시 진행해주세요.")
-//                            .setPositiveButton("확인", DialogInterface.OnClickListener { dialog , i ->
-//                            })
-//                        val alertDialog = builder.create()
-//                        alertDialog.show()
-                                Log.d("answer","0")
+                                    TokenNetworkService.auth_token = it
+                                    TokenNetworkService.service.getTokenResult()
+                                }
+                                val answer = result.result.jwt
+                                if (answer.isNotEmpty()) {
+                                    Log.d("answer", answer)
+                                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                    startActivity(intent)
+                                } else {
+                                    Log.d("answer", "0")
+                                }
                             }
                         }
+
                     }
-
+                })
+            } else if (tokenInfo != null) {
+                Toast.makeText(this, "토큰 정보 보기 성공", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
             }
-        })
+        }
 
-        binding.loginBtn.setOnClickListener{
+        binding.loginBtn.setOnClickListener {
             kakaoAuthViewModel.kakaoLogin()
         }
 
 
     }
 
-
-//    fun sendTokenInfo(view : View){
-//
-//
-//        kakaoAuthViewModel = ViewModelProvider(this).get(KakaoAuthViewModel::class.java)
-//
-//        kakaoAuthViewModel.currentToken.observe(this, Observer{
-//            if(it.isNotEmpty()){
-//                //토큰 전송 함수 호출
-//                //토큰 전송 후 토큰 유효 여부를 확인한 후에 페이지 이동
-//
-//                lifecycleScope.launch {
-//
-//                    val result = withContext(Dispatchers.IO) {
-//                        TokenNetworkService.service.getTokenResult(it)
-//                    }
-//                    val answer = result.result
-//                    if (answer) {
-////                        val intent = Intent(this, MainActivity::class.java)
-////                        startActivity(intent)
-//
-//
-//                        Log.d("answer","1")
-//                    }
-//                    else{
-////                        val builder = AlertDialog.Builder(this)
-////
-////                        builder.setTitle("로그인 오류")
-////                            .setMessage("로그인에 실패하였습니다. 로그인을 다시 진행해주세요.")
-////                            .setPositiveButton("확인", DialogInterface.OnClickListener { dialog , i ->
-////                            })
-////                        val alertDialog = builder.create()
-////                        alertDialog.show()
-//                        Log.d("answer","0")
-//                    }
-//                }
-//
-//            }
-//        })
-//
-//
-//        }
-    }
+}
 
 
 
