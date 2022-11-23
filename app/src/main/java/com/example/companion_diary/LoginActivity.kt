@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.example.companion_diary.ViewModel.KakaoAuthViewModel
+import com.example.companion_diary.Model.KakaoAuthViewModel
 import com.example.companion_diary.api.TokenNetworkService
 import com.example.companion_diary.databinding.ActivityLoginBinding
 import com.kakao.sdk.user.UserApiClient

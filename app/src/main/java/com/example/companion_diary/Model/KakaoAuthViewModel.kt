@@ -1,4 +1,4 @@
-package com.example.companion_diary.ViewModel
+package com.example.companion_diary.Model
 
 import android.app.Application
 import android.util.Log
