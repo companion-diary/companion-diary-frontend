@@ -1,7 +1,6 @@
-package com.example.companion_diary
+package com.example.companion_diary.ViewModel
 
 import android.app.Application
-import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.*
 import com.kakao.sdk.auth.AuthApiClient
@@ -10,7 +9,6 @@ import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.common.model.KakaoSdkError
 import com.kakao.sdk.user.UserApiClient
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
