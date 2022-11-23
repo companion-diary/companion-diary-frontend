@@ -27,32 +27,24 @@ class MainActivity : AppCompatActivity() {
         binding.mainBnv.setOnItemSelectedListener{ item ->
             when (item.itemId) {
 
-                R.id.storeFragment -> {
+                R.id.profileFragment -> {
+                    binding.mainBnv.itemBackgroundResource = R.drawable.bottomnav_indicator
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_frm, StoreFragment())
+                        .replace(R.id.main_frm, ProfileFragment())
                         .commitAllowingStateLoss()
                     return@setOnItemSelectedListener true
                 }
 
-                R.id.communityFragment -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_frm, CommunityFragment())
-                        .commitAllowingStateLoss()
-                    return@setOnItemSelectedListener true
-                }
                 R.id.diaryFragment -> {
+                    binding.mainBnv.itemBackgroundResource = R.drawable.bottomnav_indicator_green
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.main_frm, DiaryFragment())
                         .commitAllowingStateLoss()
                     return@setOnItemSelectedListener true
                 }
-                R.id.alarmFragment -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_frm, AlarmFragment())
-                        .commitAllowingStateLoss()
-                    return@setOnItemSelectedListener true
-                }
-                R.id.profileFragment -> {
+
+                R.id.settingFragment -> {
+                    binding.mainBnv.itemBackgroundResource = R.drawable.bottomnav_indicator
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.main_frm, ProfileFragment())
                         .commitAllowingStateLoss()
