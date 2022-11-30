@@ -31,7 +31,7 @@
         <entry key="app/src/main/res/drawable/setting_icon_selector.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/write_post_profile_img_resize.xml" value="0.165" />
         <entry key="app/src/main/res/drawable/write_post_profile_other_img_resize.xml" value="0.165" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.16" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_splash_activty.xml" value="0.22" />
         <entry key="app/src/main/res/layout/community_animal_ask_rv_item.xml" value="0.22" />
