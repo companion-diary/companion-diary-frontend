@@ -69,7 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="동식물 일기 애플리케이션"
-                android:fontFamily="@font/notosanskrregular"
+                android:fontFamily="@font/robotoblack"
                 android:textColor="#858585"
                 android:textSize="12sp"
                 />
@@ -101,7 +101,7 @@
                 android:id="@+id/title2_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/notosanskrregular"
+                android:fontFamily="@font/robotoblack"
                 android:text="지금 동식이 일기를 시작하세요"
                 app:layout_constraintTop_toTopOf="parent"
                 android:textColor="#333333"
