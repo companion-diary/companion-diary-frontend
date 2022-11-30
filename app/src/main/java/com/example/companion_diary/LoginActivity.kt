@@ -29,40 +29,68 @@ class LoginActivity : AppCompatActivity() {
 
         UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
             if (error != null) {
-                Toast.makeText(this, "토큰 정보 보기 실패", Toast.LENGTH_SHORT).show()
-                kakaoAuthViewModel = ViewModelProvider(this).get(KakaoAuthViewModel::class.java)
-                kakaoAuthViewModel.currentToken.observe(this, Observer {
-                    if (it.isNotEmpty()) {
-                        //토큰 전송 함수 호출
-                        //토큰 전송 후 토큰 유효 여부를 확인한 후에 페이지 이동
-
-                        if (it != "error") {
-                            lifecycleScope.launch {
-
-                                val result = withContext(Dispatchers.IO) {
-
-                                    TokenNetworkService.auth_token = it
-                                    TokenNetworkService.service.getTokenResult()
-                                }
-                                val answer = result.result.jwt
-                                if (answer.isNotEmpty()) {
-                                    Log.d("answer", answer)
-                                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                                    startActivity(intent)
-                                } else {
-                                    Log.d("answer", "0")
-                                }
-                            }
-                        }
-
-                    }
-                })
+//                Toast.makeText(this, "토큰 정보 보기 실패", Toast.LENGTH_SHORT).show()
+//                kakaoAuthViewModel = ViewModelProvider(this).get(KakaoAuthViewModel::class.java)
+//                kakaoAuthViewModel.currentToken.observe(this, Observer {
+//                    if (it.isNotEmpty()) {
+//                        //토큰 전송 함수 호출
+//                        //토큰 전송 후 토큰 유효 여부를 확인한 후에 페이지 이동
+//
+//                        if (it != "error") {
+//                            lifecycleScope.launch {
+//
+//                                val result = withContext(Dispatchers.IO) {
+//
+//                                    TokenNetworkService.auth_token = it
+//                                    TokenNetworkService.service.getTokenResult()
+//                                }
+//                                val answer = result.result.jwt
+//                                if (answer.isNotEmpty()) {
+//                                    Log.d("answer", answer)
+//                                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+//                                    startActivity(intent)
+//                                } else {
+//                                    Log.d("answer", "0")
+//                                }
+//                            }
+//                        }
+//
+//                    }
+//                })
             } else if (tokenInfo != null) {
-                Toast.makeText(this, "토큰 정보 보기 성공", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this, "토큰 정보 보기 성공", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }
         }
+
+        kakaoAuthViewModel = ViewModelProvider(this).get(KakaoAuthViewModel::class.java)
+        kakaoAuthViewModel.currentToken.observe(this, Observer {
+            if (it.isNotEmpty()) {
+                //토큰 전송 함수 호출
+                //토큰 전송 후 토큰 유효 여부를 확인한 후에 페이지 이동
+
+                if (it != "error") {
+                    lifecycleScope.launch {
+
+                        val result = withContext(Dispatchers.IO) {
+
+                            TokenNetworkService.auth_token = it
+                            TokenNetworkService.service.getTokenResult()
+                        }
+                        val answer = result.result.jwt
+                        if (answer.isNotEmpty()) {
+                            Log.d("answer", answer)
+                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                            startActivity(intent)
+                        } else {
+                            Log.d("answer", "0")
+                        }
+                    }
+                }
+
+            }
+        })
 
         binding.loginBtn.setOnClickListener {
             kakaoAuthViewModel.kakaoLogin()
