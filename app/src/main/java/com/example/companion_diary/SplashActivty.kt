@@ -4,7 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import com.example.companion_diary.view.LoginActivity
+import com.example.companion_diary.login.view.LoginActivity
 
 class SplashActivty : AppCompatActivity() {
 

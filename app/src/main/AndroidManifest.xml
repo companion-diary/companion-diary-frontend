@@ -16,7 +16,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".view.LoginActivity"
+            android:name="com.example.companion_diary.login.view.LoginActivity"
             android:exported="false" />
 <!--        <activity android:name=".LoginActivity" /> &lt;!&ndash; <activity &ndash;&gt;-->
         <!-- android:name=".MainActivity" -->
