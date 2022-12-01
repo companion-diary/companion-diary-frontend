@@ -70,7 +70,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginAlertDialog(context : Context) {
-        MaterialAlertDialogBuilder(context, R.style.DialogButtonTheme)
+        MaterialAlertDialogBuilder(context, R.style.MaterialAlertDialog_App_Title_Text)
             .setTitle("로그인 오류")
             .setMessage("카카오 로그인 오류가 발생하였습니다. 다시 로그인해주세요.")
             .setPositiveButton("확인") { dialog, which ->

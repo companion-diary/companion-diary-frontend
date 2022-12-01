@@ -21,4 +21,7 @@
     <style name="DialogButtonTheme" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
         <item name="colorPrimary">@color/black</item>
     </style>
+    <style name="MaterialAlertDialog.App.Title.Text" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:textColor">@color/black</item>
+    </style>
 </resources>
