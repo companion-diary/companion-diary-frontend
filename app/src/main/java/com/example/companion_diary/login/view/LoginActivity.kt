@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.companion_diary.MainActivity
+import com.example.companion_diary.R
 import com.example.companion_diary.databinding.ActivityLoginBinding
 import com.example.companion_diary.login.api.TokenNetworkService
 import com.example.companion_diary.login.model.KakaoAuthViewModel
@@ -69,9 +70,9 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginAlertDialog(context : Context) {
-        MaterialAlertDialogBuilder(context)
+        MaterialAlertDialogBuilder(context, R.style.DialogButtonTheme)
             .setTitle("로그인 오류")
-            .setMessage("카카오 로그인 오류가 발생하였습니다.\n다시 로그인해주세요.")
+            .setMessage("카카오 로그인 오류가 발생하였습니다. 다시 로그인해주세요.")
             .setPositiveButton("확인") { dialog, which ->
             }
             .show()
