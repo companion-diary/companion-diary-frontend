@@ -71,11 +71,24 @@ class LoginActivity : AppCompatActivity() {
 
     private fun loginAlertDialog(context : Context) {
         MaterialAlertDialogBuilder(context, R.style.ThemeOverlay_App_MaterialAlertDialog)
-            .setTitle("로그인 오류")
-            .setMessage("카카오 로그인 오류가 발생하였습니다. 다시 로그인해주세요.")
-            .setPositiveButton("확인") { dialog, which ->
+            .setTitle(LOGIN_ERROR_TITLE_MSG)
+            .setMessage(KAKAO_LOGIN_ERROR_MSG)
+            .setPositiveButton(CHECK_MSG) { dialog, which ->
             }
             .show()
+    }
+
+    private fun skipToMainMenu(answer : String){
+        if(answer.isNotEmpty()) {
+            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    companion object{
+        const val LOGIN_ERROR_TITLE_MSG = "로그인 오류"
+        const val KAKAO_LOGIN_ERROR_MSG = "카카오 로그인 오류가 발생하였습니다. 다시 로그인해주세요."
+        const val CHECK_MSG = "확인"
     }
 
 }
