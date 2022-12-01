@@ -1,13 +1,11 @@
-package com.example.companion_diary.Model
+package com.example.companion_diary.login.model
 
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
-import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
-import com.kakao.sdk.common.model.KakaoSdkError
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.coroutines.launch
 import kotlin.coroutines.resume

@@ -1,6 +1,5 @@
-package com.example.companion_diary.api
+package com.example.companion_diary.login.api
 
-import android.media.session.MediaSession
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

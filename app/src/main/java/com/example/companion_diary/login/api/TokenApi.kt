@@ -1,6 +1,5 @@
-package com.example.companion_diary.api
+package com.example.companion_diary.login.api
 
-import retrofit2.Call
 import retrofit2.http.*
 
 interface TokenApi {

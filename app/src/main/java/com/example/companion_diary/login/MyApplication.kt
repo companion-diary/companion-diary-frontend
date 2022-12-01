@@ -1,6 +1,7 @@
-package com.example.companion_diary
+package com.example.companion_diary.login
 
 import android.app.Application
+import com.example.companion_diary.BuildConfig
 import com.kakao.sdk.common.KakaoSdk
 
 class MyApplication : Application() {

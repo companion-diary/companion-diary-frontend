@@ -1,4 +1,4 @@
-package com.example.companion_diary.api
+package com.example.companion_diary.login.api
 
 import com.google.gson.annotations.SerializedName
 

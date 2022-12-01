@@ -1,17 +1,15 @@
-package com.example.companion_diary
+package com.example.companion_diary.login
 
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.example.companion_diary.Model.KakaoAuthViewModel
-import com.example.companion_diary.api.TokenNetworkService
+import com.example.companion_diary.MainActivity
+import com.example.companion_diary.login.model.KakaoAuthViewModel
+import com.example.companion_diary.login.api.TokenNetworkService
 import com.example.companion_diary.databinding.ActivityLoginBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.kakao.sdk.user.UserApiClient
