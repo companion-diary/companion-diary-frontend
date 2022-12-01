@@ -1,4 +1,4 @@
-package com.example.companion_diary.login
+package com.example.companion_diary.view
 
 import android.content.Context
 import android.content.Intent
