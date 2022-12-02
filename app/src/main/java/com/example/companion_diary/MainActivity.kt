@@ -2,6 +2,7 @@ package com.example.companion_diary
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.view.isNotEmpty
 import com.example.companion_diary.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -12,8 +13,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         binding.mainBnv.itemIconTintList = null
+
         initBottomNavigation()
+
+
+//        if (binding.mainBnv.isNotEmpty()) {
+//           binding.mainBnv.itemBackgroundResource = R.drawable.bottomnav_indicator_green
+//        }
+
 
     }
 
