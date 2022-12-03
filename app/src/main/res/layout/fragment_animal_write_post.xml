@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:id="@+id/top_layout"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        android:layout_marginStart="25dp"-->
+    <!--        android:layout_marginEnd="25dp"-->
+    <!--        android:layout_marginTop="28.55dp"-->
+    <!--        tools:ignore="MissingConstraints">-->
+
+    <ImageButton
+        android:id="@+id/back_press_btn"
+        android:layout_width="9.88dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="28.55dp"
+        android:src="@drawable/back_press_arrow_btn_resize"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_marginTop="28.55dp"
+        android:id="@+id/title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="99.12dp"
+        android:fontFamily="@font/notosanskrbold"
+        android:text="게시물 작성"
+        android:includeFontPadding="false"
+        android:textColor="#484848"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/back_press_btn"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/community_post_menu_btn"
+        android:layout_width="5dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="99dp"
+        android:layout_gravity="center"
+        android:background="@drawable/community_post_menu_icon_resize"
+        app:layout_constraintStart_toEndOf="@+id/title_tv"
+        app:layout_constraintTop_toTopOf="@+id/title_tv"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+
+    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

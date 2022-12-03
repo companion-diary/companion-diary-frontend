@@ -15,7 +15,6 @@
         app:layout_constraintLeft_toRightOf="parent"
         app:layout_constraintRight_toLeftOf="parent"/>
 
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/main_bnv"
         android:layout_width="240dp"

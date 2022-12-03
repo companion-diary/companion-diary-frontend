@@ -1,0 +1,6 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:width="109.73dp"
+        android:height="30dp"
+        android:drawable="@drawable/community_spinner_background" />
+</layer-list>

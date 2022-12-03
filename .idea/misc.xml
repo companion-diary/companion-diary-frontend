@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/compose-model-1659345001204.xml" value="0.1" />
+        <entry key="../../../../layout/compose-model-1659507187633.xml" value="0.1" />
         <entry key="..\:/Users/82107/AndroidStudioProjects/companion-diary-frontend/app/src/main/res/drawable/ic_android_black_24dp.xml" value="0.1655" />
         <entry key="..\:/Users/82107/AndroidStudioProjects/companion-diary-frontend/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1655" />
         <entry key="..\:/Users/82107/AndroidStudioProjects/companion-diary-frontend/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
@@ -12,6 +14,34 @@
         <entry key="..\:/Users/82107/AndroidStudioProjects/companion-diary-frontend/app/src/main/res/layout/fragment_look.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/82107/AndroidStudioProjects/companion-diary-frontend/app/src/main/res/layout/fragment_search.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/82107/AndroidStudioProjects/companion-diary-frontend/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.165" />
+        <entry key="app/src/main/res/drawable/back_press_arrow_btn_resize.xml" value="0.165" />
+        <entry key="app/src/main/res/drawable/bottomnav_background.xml" value="0.1575" />
+        <entry key="app/src/main/res/drawable/bottomnav_indicator.xml" value="0.1275" />
+        <entry key="app/src/main/res/drawable/check_box_selector.xml" value="0.1965" />
+        <entry key="app/src/main/res/drawable/community_btn_selector.xml" value="0.141" />
+        <entry key="app/src/main/res/drawable/community_floating_action_icon_resize.xml" value="0.165" />
+        <entry key="app/src/main/res/drawable/community_img_position_icon_resize.xml" value="0.165" />
+        <entry key="app/src/main/res/drawable/community_post_menu_icon_resize.xml" value="0.165" />
+        <entry key="app/src/main/res/drawable/community_spinner_background_resize.xml" value="0.1835" />
+        <entry key="app/src/main/res/drawable/diary_icon_selector.xml" value="0.1575" />
+        <entry key="app/src/main/res/drawable/kakao_login_btn_resize.xml" value="0.199" />
+        <entry key="app/src/main/res/drawable/main_icon_selector.xml" value="0.1575" />
+        <entry key="app/src/main/res/drawable/searchicon_resize.xml" value="0.1425" />
+        <entry key="app/src/main/res/drawable/setting_icon_selector.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/write_post_profile_img_resize.xml" value="0.165" />
+        <entry key="app/src/main/res/drawable/write_post_profile_other_img_resize.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_splash_activty.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/community_animal_ask_rv_item.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_animal_write_post.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_community.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_community_animal_ask.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_community_animal_show_off.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.10750695088044486" />
         <entry key="app/src/main/res/drawable/bottomnav_background.xml" value="0.1525" />
         <entry key="app/src/main/res/drawable/bottomnav_img_resize.xml" value="0.249" />
         <entry key="app/src/main/res/drawable/bottomnav_indicator.xml" value="0.1035" />
