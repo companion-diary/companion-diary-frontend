@@ -47,4 +47,23 @@ dependencies {
 
     //animation bottom navigation
     implementation 'nl.joery.animatedbottombar:library:1.1.0'
+    // glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    // bottom sheet dialog
+    implementation 'com.google.android.material:material:1.5.0-alpha02'
+    // viewPager
+    implementation "androidx.viewpager2:viewpager2:1.1.0-alpha01"
+    // joda-time
+    implementation 'joda-time:joda-time:2.10.6'
+    // permission
+    implementation 'io.github.ParkSangGwon:tedpermission-normal:3.3.0'
+    // imagePicker
+    implementation 'com.github.niusounds:TedBottomPicker:3.0.0'
+    // viewPager dot indicator
+    implementation 'com.tbuonomo:dotsindicator:4.3'
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 }

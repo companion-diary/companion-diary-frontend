@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="look_diary_menu_width">80dp</dimen>
+    <dimen name="look_diary_margin">28dp</dimen>
+    <dimen name="look_diary_padding">60dp</dimen>
+    <dimen name="look_diary_menu_start_margin">10dp</dimen>
+    <dimen name="diary_calendar_height">400dp</dimen>
+    <dimen name="diary_calendar_margin_bottom">27dp</dimen>
+    <dimen name="diary_calendar_top_space">97dp</dimen>
+
+</resources>
