@@ -2,22 +2,35 @@ package com.example.companion_diary.diary.custom
 
 
 import android.content.Context
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.Rect
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.util.Log
 import android.view.ContextThemeWrapper
+import android.view.LayoutInflater
 import android.view.View
 import androidx.annotation.AttrRes
 import androidx.annotation.StyleRes
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.content.withStyledAttributes
+import com.example.companion_diary.R
+import com.example.companion_diary.databinding.DialogDiaryDateSelectionDetailsBinding
+import com.example.companion_diary.diary.entities.Date
+import com.example.companion_diary.diary.entities.DiaryPreview
+import com.example.companion_diary.diary.network.DiaryClient
+import com.example.companion_diary.diary.utils.CalendarUtils.Companion.checkToday
 import com.example.companion_diary.diary.utils.CalendarUtils.Companion.getDateColor
 import com.example.companion_diary.diary.utils.CalendarUtils.Companion.isDiaryExist
 import com.example.companion_diary.diary.utils.CalendarUtils.Companion.isSameMonth
-import com.example.companion_diary.R
-import com.example.companion_diary.diary.utils.CalendarUtils.Companion.checkToday
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.gun0912.tedpermission.provider.TedPermissionProvider
 import org.joda.time.DateTime
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class DayItemView @JvmOverloads constructor(
@@ -35,6 +48,7 @@ class DayItemView @JvmOverloads constructor(
     private var dotPaint: Paint = Paint()
     private var nameTagText: String = ""
     private var today : DateTime = DateTime()
+    private val TAG = "DayItemView"
 
     init {
         context.withStyledAttributes(attrs, R.styleable.CalendarView, defStyleAttr, defStyleRes) {
@@ -98,9 +112,50 @@ class DayItemView @JvmOverloads constructor(
         /**
          * day item 클릭 시 bottomSheetDialog 띄우기
          */
-//        setOnClickListener {
-//            initBottomSheetDialog()
-//        }
+        setOnClickListener {
+            initBottomSheetDialog()
+        }
+    }
+
+    private fun initBottomSheetDialog() {
+        val dialog = BottomSheetDialog(context)
+        val dialogBinding = DialogDiaryDateSelectionDetailsBinding.inflate(LayoutInflater.from(context))
+        dialog.setContentView(dialogBinding.root)
+        dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
+        dialog.behavior.skipCollapsed = true
+        dialogBinding.yearMonthDateTv.text = "${date.year}년 ${date.monthOfYear}월 ${date.dayOfMonth}일"
+        Log.d(TAG,"${date.year}-${date.monthOfYear}-${date.dayOfMonth}")
+        getDiaryList("2022-11-23") // TEST
+
+        dialogBinding.prevIv.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    private fun getDiaryList(date: String) {
+        val call: Call<DiaryPreview> = DiaryClient.diaryService.getDiaryList(date)
+        call.enqueue(object: Callback<DiaryPreview> {
+            override fun onResponse(call: Call<DiaryPreview>, response: Response<DiaryPreview>) {
+                if(response.isSuccessful){
+                    val diaryResult: DiaryPreview = response.body()!!
+                    if(diaryResult.isSuccess){
+                        Log.d(TAG,"onResponse success")
+                        if (diaryResult != null) {
+                            Log.d(TAG,"${diaryResult}")
+                        }
+                    } else{
+                        Log.d(TAG,"${diaryResult.message}")
+                    }
+                } else {
+                    Log.d(TAG,"onResponse 실패")
+                }
+            }
+            override fun onFailure(call: Call<DiaryPreview>, t: Throwable) {
+                Log.d(TAG,"onFailure 예외: " + t.message)
+            }
+        })
     }
 
 

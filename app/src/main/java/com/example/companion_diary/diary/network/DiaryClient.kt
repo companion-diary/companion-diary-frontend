@@ -36,5 +36,5 @@ object DiaryClient {
         return instance!!
     }
     
-    val getDateListService: DiaryApi = getInstance().create(DiaryApi::class.java)
+    val diaryService: DiaryApi = getInstance().create(DiaryApi::class.java)
 }

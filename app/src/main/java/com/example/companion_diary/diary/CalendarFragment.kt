@@ -57,14 +57,11 @@ open class CalendarFragment: Fragment() {
             }
         }
 
-        // TODO: 서버에서 받은 날짜 리스트로 화면에 보여주기
         /**
          * 여기다가 매개변수로 서버에서 받은 날짜 리스트 넘겨주기
          * 그리고 calendarView에서 DayItemView로 매개변수 넘겨줘서 CalendarUtils에서 확인후 뷰그리기
          * 앞 뒤로 두개씩 총 5개 미리 렌더링
          */
-//        val a = DateTime(millis)
-//        Log.d("CalendarFragment","$a")
 
         loadDateList(DateTime(millis))
         return binding.root
@@ -73,7 +70,7 @@ open class CalendarFragment: Fragment() {
     private fun loadDateList(firstDayOfMonth: DateTime) {
         val startDate = firstDayOfMonth.toString().substring(0,8)+"01"
         val endDate = getEndDate(startDate)
-        val call: Call<Date> = DiaryClient.getDateListService.getDateList(startDate, endDate)
+        val call: Call<Date> = DiaryClient.diaryService.getDateList(startDate, endDate)
         call.enqueue(object: Callback<Date> {
             override fun onResponse(call: Call<Date>, response: Response<Date>) {
                 if(response.isSuccessful){
@@ -81,6 +78,7 @@ open class CalendarFragment: Fragment() {
                     if(dateResult.isSuccess){
                         Log.d(TAG,"onResponse success")
                         if (dateResult != null) {
+                            // TODO: LOG 삭제
                             Log.d(TAG,"startDate: $startDate, endDate: $endDate")
                             Log.d(TAG,"$dateResult")
                             Log.i(TAG,"-------------------")
