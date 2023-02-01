@@ -60,6 +60,7 @@ dependencies {
     implementation 'io.github.ParkSangGwon:tedpermission-normal:3.3.0'
     // imagePicker
     implementation 'com.github.niusounds:TedBottomPicker:3.0.0'
+    
     // viewPager dot indicator
     implementation 'com.tbuonomo:dotsindicator:4.3'
 

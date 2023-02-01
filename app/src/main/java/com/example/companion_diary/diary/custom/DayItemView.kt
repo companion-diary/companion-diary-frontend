@@ -15,10 +15,15 @@ import androidx.annotation.AttrRes
 import androidx.annotation.StyleRes
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.content.withStyledAttributes
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.companion_diary.R
 import com.example.companion_diary.databinding.DialogDiaryDateSelectionDetailsBinding
+import com.example.companion_diary.diary.DiaryItemDecoration
+import com.example.companion_diary.diary.NameTagRVAdapter
 import com.example.companion_diary.diary.entities.Date
 import com.example.companion_diary.diary.entities.DiaryPreview
+import com.example.companion_diary.diary.entities.Pet
+import com.example.companion_diary.diary.entities.PetList
 import com.example.companion_diary.diary.network.DiaryClient
 import com.example.companion_diary.diary.utils.CalendarUtils.Companion.checkToday
 import com.example.companion_diary.diary.utils.CalendarUtils.Companion.getDateColor
@@ -46,7 +51,7 @@ class DayItemView @JvmOverloads constructor(
     private val bounds = Rect()
     private var textPaint: Paint = Paint()
     private var dotPaint: Paint = Paint()
-    private var nameTagText: String = ""
+    private lateinit var selectedPet: Pet
     private var today : DateTime = DateTime()
     private val TAG = "DayItemView"
 
@@ -124,14 +129,54 @@ class DayItemView @JvmOverloads constructor(
         dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
         dialog.behavior.skipCollapsed = true
         dialogBinding.yearMonthDateTv.text = "${date.year}년 ${date.monthOfYear}월 ${date.dayOfMonth}일"
-        Log.d(TAG,"${date.year}-${date.monthOfYear}-${date.dayOfMonth}")
-        getDiaryList("2022-11-23") // TEST
+//        Log.d(TAG,"${date.year}-${date.monthOfYear}-${date.dayOfMonth}")
 
         dialogBinding.prevIv.setOnClickListener {
             dialog.dismiss()
         }
 
+        getDiaryList("${date.year}-${date.monthOfYear}-${date.dayOfMonth}")
+        getPetList(dialogBinding)
+
         dialog.show()
+    }
+
+    private fun getPetList(dialogBinding: DialogDiaryDateSelectionDetailsBinding) {
+        val call: Call<PetList> = DiaryClient.diaryService.getPetList()
+        call.enqueue(object: Callback<PetList>{
+            override fun onResponse(call: Call<PetList>, response: Response<PetList>) {
+                if(response.isSuccessful){
+                    val petResult: PetList = response.body()!!
+                    if(petResult.isSuccess){
+                        Log.d(TAG,"onResponse success")
+                        if (petResult != null) {
+                            var nameTagListAdapter = NameTagRVAdapter(petResult.result)
+                            var nameTagListManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false)
+                            dialogBinding.companionNameTagRv.apply{
+                                adapter = nameTagListAdapter
+                                layoutManager = nameTagListManager
+                                addItemDecoration(DiaryItemDecoration(context, 23f))
+                            }
+                            nameTagListAdapter.setMyItemSelectedListener(object: NameTagRVAdapter.MyItemSelectedListener{
+                                override fun onItemSelected(pet: Pet) {
+                                    selectedPet = pet
+                                    // TODO: Set Intent Data
+                                }
+                            })
+                            Log.d(TAG,"$petResult")
+                        }
+                    } else{
+                        Log.d(TAG,"${petResult.message}")
+                    }
+                } else {
+                    Log.d(TAG,"onResponse 실패")
+                }
+            }
+
+            override fun onFailure(call: Call<PetList>, t: Throwable) {
+                Log.d(TAG,"onFailure 예외: " + t.message)
+            }
+        })
     }
 
     private fun getDiaryList(date: String) {
@@ -143,7 +188,7 @@ class DayItemView @JvmOverloads constructor(
                     if(diaryResult.isSuccess){
                         Log.d(TAG,"onResponse success")
                         if (diaryResult != null) {
-                            Log.d(TAG,"${diaryResult}")
+                            Log.d(TAG,"$diaryResult")
                         }
                     } else{
                         Log.d(TAG,"${diaryResult.message}")
