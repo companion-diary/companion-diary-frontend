@@ -19,11 +19,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.companion_diary.R
 import com.example.companion_diary.databinding.DialogDiaryDateSelectionDetailsBinding
 import com.example.companion_diary.diary.DiaryItemDecoration
+import com.example.companion_diary.diary.DiaryRVAdapter
 import com.example.companion_diary.diary.NameTagRVAdapter
-import com.example.companion_diary.diary.entities.Date
-import com.example.companion_diary.diary.entities.DiaryPreview
-import com.example.companion_diary.diary.entities.Pet
-import com.example.companion_diary.diary.entities.PetList
+import com.example.companion_diary.diary.entities.*
 import com.example.companion_diary.diary.network.DiaryClient
 import com.example.companion_diary.diary.utils.CalendarUtils.Companion.checkToday
 import com.example.companion_diary.diary.utils.CalendarUtils.Companion.getDateColor
@@ -135,7 +133,7 @@ class DayItemView @JvmOverloads constructor(
             dialog.dismiss()
         }
 
-        getDiaryList("${date.year}-${date.monthOfYear}-${date.dayOfMonth}")
+        getDiaryList("${date.year}-${date.monthOfYear}-${date.dayOfMonth}", dialogBinding)
         getPetList(dialogBinding)
 
         dialog.show()
@@ -179,16 +177,24 @@ class DayItemView @JvmOverloads constructor(
         })
     }
 
-    private fun getDiaryList(date: String) {
-        val call: Call<DiaryPreview> = DiaryClient.diaryService.getDiaryList(date)
-        call.enqueue(object: Callback<DiaryPreview> {
-            override fun onResponse(call: Call<DiaryPreview>, response: Response<DiaryPreview>) {
+    private fun getDiaryList(date: String, dialogBinding: DialogDiaryDateSelectionDetailsBinding) {
+        val call: Call<DiaryPreviewList> = DiaryClient.diaryService.getDiaryList(date)
+        call.enqueue(object: Callback<DiaryPreviewList> {
+            override fun onResponse(call: Call<DiaryPreviewList>, response: Response<DiaryPreviewList>) {
                 if(response.isSuccessful){
-                    val diaryResult: DiaryPreview = response.body()!!
+                    val diaryResult: DiaryPreviewList = response.body()!!
                     if(diaryResult.isSuccess){
                         Log.d(TAG,"onResponse success")
                         if (diaryResult != null) {
-                            Log.d(TAG,"$diaryResult")
+//                            Log.d(TAG, "$diaryResult")
+                            var diaryListAdapter = DiaryRVAdapter(diaryResult.result, context)
+                            var diaryListManager =
+                                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                            dialogBinding.diaryRv.apply {
+                                adapter = diaryListAdapter
+                                layoutManager = diaryListManager
+                                addItemDecoration(DiaryItemDecoration(context, 10f))
+                            }
                         }
                     } else{
                         Log.d(TAG,"${diaryResult.message}")
@@ -197,7 +203,8 @@ class DayItemView @JvmOverloads constructor(
                     Log.d(TAG,"onResponse 실패")
                 }
             }
-            override fun onFailure(call: Call<DiaryPreview>, t: Throwable) {
+
+            override fun onFailure(call: Call<DiaryPreviewList>, t: Throwable) {
                 Log.d(TAG,"onFailure 예외: " + t.message)
             }
         })

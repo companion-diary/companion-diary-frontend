@@ -2,7 +2,7 @@ package com.example.companion_diary.diary.entities
 
 import com.google.gson.annotations.SerializedName
 
-data class DiaryPreview(
+data class DiaryPreviewList(
     @SerializedName("isSuccess")
     val isSuccess: Boolean,
     @SerializedName("code")
@@ -10,10 +10,10 @@ data class DiaryPreview(
     @SerializedName("message")
     val message: String,
     @SerializedName("result")
-    val result: ArrayList<DiaryResult>
+    val result: ArrayList<DiaryPreview>
 )
 
-data class DiaryResult(
+data class DiaryPreview(
     @SerializedName("diary_id")
     val diaryId: Int,
     @SerializedName("pet_id")

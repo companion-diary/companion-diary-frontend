@@ -1,7 +1,7 @@
 package com.example.companion_diary.diary.network
 
 import com.example.companion_diary.diary.entities.Date
-import com.example.companion_diary.diary.entities.DiaryPreview
+import com.example.companion_diary.diary.entities.DiaryPreviewList
 import com.example.companion_diary.diary.entities.PetList
 import retrofit2.Call
 import retrofit2.http.GET
@@ -17,7 +17,7 @@ interface DiaryApi {
     @GET("/diarys")
     fun getDiaryList(
         @Query("date") date: String
-    ): Call<DiaryPreview>
+    ): Call<DiaryPreviewList>
 
     @GET("/users/pet")
     fun getPetList(): Call<PetList>
