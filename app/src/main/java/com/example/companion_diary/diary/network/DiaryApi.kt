@@ -1,10 +1,10 @@
 package com.example.companion_diary.diary.network
 
-import com.example.companion_diary.diary.entities.Date
-import com.example.companion_diary.diary.entities.DiaryPreviewList
-import com.example.companion_diary.diary.entities.PetList
+import com.example.companion_diary.diary.entities.*
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface DiaryApi {
@@ -21,4 +21,9 @@ interface DiaryApi {
 
     @GET("/users/pet")
     fun getPetList(): Call<PetList>
+
+    @POST("/diarys")
+    fun createDiary(
+        @Body diary: Diary
+    ): Call<DiaryResponse>
 }

@@ -30,16 +30,16 @@ class DiaryRVAdapter(private var diaryPreviewList: ArrayList<DiaryPreview>,val m
         fun initView(diaryPreview: DiaryPreview){
             when(diaryPreview.petTag){
                 "ANIMAL" -> {
-                    binding.profileIv.setImageResource(R.drawable.ic_plant)
-                    binding.itemDiaryLayout.setBackgroundResource(R.drawable.border_diary_preview_layout_green)
-                    binding.itemDiaryNameTagTv.setTextColor(context.getColor(R.color.main_color_green))
-                    binding.itemDiaryTitleTv.setTextColor(context.getColor(R.color.main_color_green))
-                }
-                "PLANT" -> {
                     binding.profileIv.setImageResource(R.drawable.ic_animal)
                     binding.itemDiaryLayout.setBackgroundResource(R.drawable.border_diary_preview_layout_orange)
                     binding.itemDiaryNameTagTv.setTextColor(context.getColor(R.color.main_color_orange))
                     binding.itemDiaryTitleTv.setTextColor(context.getColor(R.color.main_color_orange))
+                }
+                "PLANT" -> {
+                    binding.profileIv.setImageResource(R.drawable.ic_plant)
+                    binding.itemDiaryLayout.setBackgroundResource(R.drawable.border_diary_preview_layout_green)
+                    binding.itemDiaryNameTagTv.setTextColor(context.getColor(R.color.main_color_green))
+                    binding.itemDiaryTitleTv.setTextColor(context.getColor(R.color.main_color_green))
                 }
             }
             binding.itemDiaryNameTagTv.text = diaryPreview.petName

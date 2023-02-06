@@ -14,7 +14,7 @@ object DiaryClient {
     val xAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJFbWFpbCI6ImV1bjIwNTE2QG5hdmVyLmNvbSIsInVzZXJOaWNuYW1lIjoi67Cx7J2A6rK9IiwidXNlclByb2ZpbGVJbWFnZSI6Imh0dHA6Ly9rLmtha2FvY2RuLm5ldC9kbi9iaGdmZHIvYnRyUFFNeHVsVTEvbTg3NGRLVFFVbXBBYlF6ZWhtY0N2Sy9pbWdfNjQweDY0MC5qcGciLCJpYXQiOjE2Njc5OTY0NzQsImV4cCI6MTY5OTUzMjQ3NCwic3ViIjoidXNlckluZm8ifQ.leo8A2TGijtHdmDMkCl2__gkX7cD43lKOpREGUcYDDY"
     val TAG = "DiaryClient"
 
-    private const val BASE_URL = "http://43.201.108.60:80/"
+    private const val BASE_URL = "http://43.200.172.34/"
 
     val okHttpClient = OkHttpClient.Builder()
         .addNetworkInterceptor {

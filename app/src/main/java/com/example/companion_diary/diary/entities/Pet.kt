@@ -28,4 +28,4 @@ data class Pet(
     val petSex: String,
     @SerializedName("pet_profile_img")
     val petProfileImg: String
-)
+): java.io.Serializable

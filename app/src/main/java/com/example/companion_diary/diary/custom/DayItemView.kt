@@ -2,6 +2,7 @@ package com.example.companion_diary.diary.custom
 
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Rect
@@ -11,16 +12,18 @@ import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.AttrRes
 import androidx.annotation.StyleRes
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.content.withStyledAttributes
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.companion_diary.MainActivity
 import com.example.companion_diary.R
 import com.example.companion_diary.databinding.DialogDiaryDateSelectionDetailsBinding
-import com.example.companion_diary.diary.DiaryItemDecoration
-import com.example.companion_diary.diary.DiaryRVAdapter
-import com.example.companion_diary.diary.NameTagRVAdapter
+import com.example.companion_diary.diary.*
 import com.example.companion_diary.diary.entities.*
 import com.example.companion_diary.diary.network.DiaryClient
 import com.example.companion_diary.diary.utils.CalendarUtils.Companion.checkToday
@@ -49,7 +52,7 @@ class DayItemView @JvmOverloads constructor(
     private val bounds = Rect()
     private var textPaint: Paint = Paint()
     private var dotPaint: Paint = Paint()
-    private lateinit var selectedPet: Pet
+    private var selectedPet: Pet? = null
     private var today : DateTime = DateTime()
     private val TAG = "DayItemView"
 
@@ -121,20 +124,36 @@ class DayItemView @JvmOverloads constructor(
     }
 
     private fun initBottomSheetDialog() {
-        val dialog = BottomSheetDialog(context)
+        val dialog = BottomSheetDialog(context, R.style.TransparentBottomSheetDialogFragment)
         val dialogBinding = DialogDiaryDateSelectionDetailsBinding.inflate(LayoutInflater.from(context))
         dialog.setContentView(dialogBinding.root)
         dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
         dialog.behavior.skipCollapsed = true
         dialogBinding.yearMonthDateTv.text = "${date.year}년 ${date.monthOfYear}월 ${date.dayOfMonth}일"
-//        Log.d(TAG,"${date.year}-${date.monthOfYear}-${date.dayOfMonth}")
 
         dialogBinding.prevIv.setOnClickListener {
+            selectedPet = null
             dialog.dismiss()
+        }
+        dialog.setOnDismissListener {
+            selectedPet = null
         }
 
         getDiaryList("${date.year}-${date.monthOfYear}-${date.dayOfMonth}", dialogBinding)
         getPetList(dialogBinding)
+
+        dialogBinding.writeDiaryBtn.setOnClickListener {
+            var intent = Intent(context, WriteDiaryActivity::class.java)
+            if(selectedPet == null){
+                Toast.makeText(context, "어떤 친구의 하루를 작성할지 선택해주세요",Toast.LENGTH_SHORT).show()
+            } else {
+                intent.putExtra("date",date)
+                intent.putExtra("pet",selectedPet)
+                selectedPet = null
+                context.startActivity(intent)
+                dialog.dismiss()
+            }
+        }
 
         dialog.show()
     }
@@ -146,7 +165,6 @@ class DayItemView @JvmOverloads constructor(
                 if(response.isSuccessful){
                     val petResult: PetList = response.body()!!
                     if(petResult.isSuccess){
-                        Log.d(TAG,"onResponse success")
                         if (petResult != null) {
                             var nameTagListAdapter = NameTagRVAdapter(petResult.result)
                             var nameTagListManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false)
@@ -158,23 +176,29 @@ class DayItemView @JvmOverloads constructor(
                             nameTagListAdapter.setMyItemSelectedListener(object: NameTagRVAdapter.MyItemSelectedListener{
                                 override fun onItemSelected(pet: Pet) {
                                     selectedPet = pet
-                                    // TODO: Set Intent Data
                                 }
                             })
-                            Log.d(TAG,"$petResult")
                         }
                     } else{
-                        Log.d(TAG,"${petResult.message}")
+                        showAlertDialog(petResult.message)
                     }
                 } else {
-                    Log.d(TAG,"onResponse 실패")
+                    showAlertDialog(response.message())
                 }
             }
 
             override fun onFailure(call: Call<PetList>, t: Throwable) {
-                Log.d(TAG,"onFailure 예외: " + t.message)
+                showAlertDialog(t.message.toString())
             }
         })
+    }
+
+    private fun showAlertDialog(message: String){
+        AlertDialog.Builder(context)
+            .setTitle("오류 발생")
+            .setMessage(message)
+            .setPositiveButton("확인") { dialog, _ -> dialog.dismiss() }
+            .show()
     }
 
     private fun getDiaryList(date: String, dialogBinding: DialogDiaryDateSelectionDetailsBinding) {
@@ -184,9 +208,7 @@ class DayItemView @JvmOverloads constructor(
                 if(response.isSuccessful){
                     val diaryResult: DiaryPreviewList = response.body()!!
                     if(diaryResult.isSuccess){
-                        Log.d(TAG,"onResponse success")
                         if (diaryResult != null) {
-//                            Log.d(TAG, "$diaryResult")
                             var diaryListAdapter = DiaryRVAdapter(diaryResult.result, context)
                             var diaryListManager =
                                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -197,125 +219,16 @@ class DayItemView @JvmOverloads constructor(
                             }
                         }
                     } else{
-                        Log.d(TAG,"${diaryResult.message}")
+                        showAlertDialog(diaryResult.message)
                     }
                 } else {
-                    Log.d(TAG,"onResponse 실패")
+                    showAlertDialog(response.message())
                 }
             }
 
             override fun onFailure(call: Call<DiaryPreviewList>, t: Throwable) {
-                Log.d(TAG,"onFailure 예외: " + t.message)
+                showAlertDialog(t.message.toString())
             }
         })
     }
-
-
-//    private fun initBottomSheetDialog(){
-//
-//        /**
-//         * bottomSheetDialog
-//         */
-//        val dialog = BottomSheetDialog(context)
-//        dialog.setContentView(R.layout.dialog_write_diary)
-//        val dateTv = dialog.findViewById<TextView>(R.id.year_month_date_tv)
-//        val prevBtn = dialog.findViewById<ImageView>(R.id.prev_iv)
-//        val writeDiaryBtn = dialog.findViewById<Button>(R.id.write_diary_btn)
-//        val companionRv = dialog.findViewById<RecyclerView>(R.id.companion_name_tag_rv)
-//        val diaryRv = dialog.findViewById<RecyclerView>(R.id.diary_rv)
-//        var nameTagList = ArrayList<String>()
-//        var diaryList = ArrayList<String>()
-//
-//        /**
-//         * 날짜
-//         */
-//        val year = date.year.toString()
-//        val monthOfYear = date.monthOfYear.toString()
-//        val dayOfMonth = date.dayOfMonth.toString()
-//        var dateStr = year + "년 " + monthOfYear + "월 " + dayOfMonth + "일"
-//        dateTv?.text = dateStr
-//
-//        /**
-//         * Dummy data
-//         */
-//        nameTagList.apply{
-//            add("otherAnimal")
-//            add("otherPlant")
-//            add("호두")
-//            add("제임스")
-//            add("연두")
-//            add("밀키")
-//        }
-//
-//        /**
-//         * 이름 태그 recyclerView 설정
-//         */
-//        var nameTagListAdapter = NameTagRVAdapter(nameTagList)
-//        var nameTagListManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false)
-//        companionRv?.apply{
-//            adapter = nameTagListAdapter
-//            layoutManager = nameTagListManager
-//            addItemDecoration(DiaryItemDecoration(context, 23f))
-//        }
-//        nameTagListAdapter.setMyItemSelectedListener(object: NameTagRVAdapter.MyItemSelectedListener{
-//            override fun onItemSelected(nameTag: String) {
-//                nameTagText = nameTag
-//            }
-//        })
-//
-//        /**
-//         * 날짜에 맞는 일기 리스트 전부 받아오기
-//         * 현재는 더미데이터
-//         */
-//
-//        diaryList.apply{
-//            add("호두")
-//            add("제임스")
-//            add("연두")
-//            add("밀키")
-//        }
-//        var diaryListAdapter = DiaryRVAdater(diaryList,context)
-//        var diaryListManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
-//        diaryRv?.apply{
-//            adapter = diaryListAdapter
-//            layoutManager = diaryListManager
-//            addItemDecoration(DiaryItemDecoration(context,10f))
-//        }
-//
-//
-//
-//        /**
-//         * 일기 쓰기 버튼 클릭 시 일기 쓰기 화면으로 이동
-//         */
-//        prevBtn?.setOnClickListener {
-//            nameTagText = ""
-//            dialog.dismiss()
-//        }
-//        dialog.setOnDismissListener {
-//            nameTagText = ""
-//        }
-//        writeDiaryBtn?.setOnClickListener {
-//            var intent = Intent(context, WriteDiaryActivity::class.java)
-//            if(nameTagText == ""){
-////                Toast.makeText(context, "어떤 친구의 하루를 작성할지 선택해주세요",Toast.LENGTH_SHORT).show()
-//                nameTagText = "Other"
-//            }
-//            if(nameTagText =="otherAnimal"|| nameTagText =="otherPlant"){ // 삭제
-//                nameTagText = "Other"
-//            }
-//            intent.putExtra("dayOfMonth", dayOfMonth)
-//            intent.putExtra("monthOfYear", monthOfYear)
-//            intent.putExtra("year", year)
-//            intent.putExtra("nameTag",nameTagText)
-//            context.startActivity(intent)
-//            dialog.dismiss()
-//            /**
-//             * 동식물 구분해서 일기 작성 페이지에서 색상 다르게 나오도록
-//             * other 태그 아니면 사진 뜨게 설정
-//             */
-//        }
-//        dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
-//        dialog.behavior.skipCollapsed = true
-//        dialog.show()
-//    }
 }
