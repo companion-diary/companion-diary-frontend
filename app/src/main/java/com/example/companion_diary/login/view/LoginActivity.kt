@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.companion_diary.MainActivity
 import com.example.companion_diary.R
 import com.example.companion_diary.databinding.ActivityLoginBinding
+import com.example.companion_diary.login.MyApplication
 import com.example.companion_diary.login.api.TokenNetworkService
 import com.example.companion_diary.login.model.KakaoAuthViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -51,6 +52,7 @@ class LoginActivity : AppCompatActivity() {
                         val answer = result.result.jwt
                         if (answer.isNotEmpty()) {
                             val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                            storeLoginToken(answer)
                             startActivity(intent)
                         }
                     }
@@ -67,6 +69,10 @@ class LoginActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    private fun storeLoginToken(token : String){
+        MyApplication.prefsManager.setString("OAuthToken", token)
     }
 
     private fun loginAlertDialog(context : Context) {
