@@ -1,6 +1,7 @@
 package com.example.companion_diary.diary
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -15,16 +16,19 @@ import com.gun0912.tedpermission.provider.TedPermissionProvider.context
 /**
  * animalDiaryList data type은 Diary data class로 변경
  */
-class DiaryRVAdapter(private var diaryPreviewList: ArrayList<DiaryPreview>,val mContext: Context): RecyclerView.Adapter<DiaryRVAdapter.ViewHolder>() {
+class DiaryRVAdapter(
+    private var diaryPreviewList: ArrayList<DiaryPreview>,
+    val mContext: Context,
+    val selectDate: String
+): RecyclerView.Adapter<DiaryRVAdapter.ViewHolder>() {
     inner class ViewHolder(val binding: ItemDiaryPreviewBinding):RecyclerView.ViewHolder(binding.root){
         fun initClickListener(position: Int){
             binding.itemDiaryLayout.setOnClickListener {
-//                var intent = Intent(mContext,LookDiaryActivity::class.java)
-                /**
-                 * data put
-                 */
-//                intent.putExtra("position",position)
-//                mContext.startActivity(intent)
+                var intent = Intent(mContext,LookDiaryActivity::class.java)
+                intent.putExtra("selectDate",selectDate)
+                intent.putExtra("diaryList",diaryPreviewList)
+                intent.putExtra("position",position)
+                mContext.startActivity(intent)
             }
         }
         fun initView(diaryPreview: DiaryPreview){

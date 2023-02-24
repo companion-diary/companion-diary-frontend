@@ -2,10 +2,7 @@ package com.example.companion_diary.diary.network
 
 import com.example.companion_diary.diary.entities.*
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface DiaryApi {
     @GET("/diarys/list/date")
@@ -25,5 +22,10 @@ interface DiaryApi {
     @POST("/diarys")
     fun createDiary(
         @Body diary: Diary
+    ): Call<DiaryResponse>
+
+    @DELETE("/diarys/{diaryId}")
+    fun deleteDiary(
+        @Path("diaryId") diaryId: Int
     ): Call<DiaryResponse>
 }

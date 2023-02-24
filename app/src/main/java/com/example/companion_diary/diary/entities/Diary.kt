@@ -28,7 +28,7 @@ data class DiaryPreview(
     val diaryTitle: String,
     @SerializedName("diary_content")
     val diaryContent: String
-)
+): java.io.Serializable
 
 data class Diary(
     @SerializedName("pet_id")

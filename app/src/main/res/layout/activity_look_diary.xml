@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_gray"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/outside_iv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@null"/>
+
+    <ImageView
+        android:id="@+id/prev_iv"
+        android:layout_width="10dp"
+        android:layout_height="16dp"
+        android:src="@drawable/ic_previous_button"
+        android:layout_marginTop="28.55dp"
+        android:layout_marginStart="25dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
+        android:id="@+id/prev_item_iv"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@drawable/ic_previous_diary_item"
+        android:layout_marginTop="39dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:id="@+id/next_item_iv"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@drawable/ic_next_diary_item"
+        android:layout_marginBottom="38dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/look_diary_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:clipChildren="false"
+        android:clipToPadding="false"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

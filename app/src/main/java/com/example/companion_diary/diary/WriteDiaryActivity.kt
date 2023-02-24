@@ -103,14 +103,14 @@ class WriteDiaryActivity:AppCompatActivity(), PermissionListener {
             "ANIMAL" -> {
                 binding.nameTagLayout.setBackgroundResource(R.drawable.border_name_tag_animal)
                 binding.registerBtn.setBackgroundResource(R.drawable.border_register_button_orange)
-                this?.getColor(R.color.main_color_orange)
-                    ?.let { binding.nameTagTv.setTextColor(it) }
+                this.getColor(R.color.main_color_orange)
+                    .let { binding.nameTagTv.setTextColor(it) }
             }
             else -> {
                 binding.nameTagLayout.setBackgroundResource(R.drawable.border_name_tag_plant)
                 binding.registerBtn.setBackgroundResource(R.drawable.border_register_button_green)
-                this?.getColor(R.color.main_color_green)
-                    ?.let { binding.nameTagTv.setTextColor(it) }
+                this.getColor(R.color.main_color_green)
+                    .let { binding.nameTagTv.setTextColor(it) }
             }
         }
     }

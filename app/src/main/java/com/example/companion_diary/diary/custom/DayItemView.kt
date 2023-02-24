@@ -54,6 +54,7 @@ class DayItemView @JvmOverloads constructor(
     private var dotPaint: Paint = Paint()
     private var selectedPet: Pet? = null
     private var today : DateTime = DateTime()
+    private var selectDateStr: String = ""
     private val TAG = "DayItemView"
 
     init {
@@ -129,7 +130,8 @@ class DayItemView @JvmOverloads constructor(
         dialog.setContentView(dialogBinding.root)
         dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
         dialog.behavior.skipCollapsed = true
-        dialogBinding.yearMonthDateTv.text = "${date.year}년 ${date.monthOfYear}월 ${date.dayOfMonth}일"
+        selectDateStr = "${date.year}년 ${date.monthOfYear}월 ${date.dayOfMonth}일"
+        dialogBinding.yearMonthDateTv.text = selectDateStr
 
         dialogBinding.prevIv.setOnClickListener {
             selectedPet = null
@@ -139,7 +141,7 @@ class DayItemView @JvmOverloads constructor(
             selectedPet = null
         }
 
-        getDiaryList("${date.year}-${date.monthOfYear}-${date.dayOfMonth}", dialogBinding)
+        getDiaryList("${date.year}-${date.monthOfYear}-${date.dayOfMonth}", dialogBinding, selectDateStr)
         getPetList(dialogBinding)
 
         dialogBinding.writeDiaryBtn.setOnClickListener {
@@ -165,7 +167,7 @@ class DayItemView @JvmOverloads constructor(
                 if(response.isSuccessful){
                     val petResult: PetList = response.body()!!
                     if(petResult.isSuccess){
-                        if (petResult != null) {
+                        if (petResult.result != null) {
                             var nameTagListAdapter = NameTagRVAdapter(petResult.result)
                             var nameTagListManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false)
                             dialogBinding.companionNameTagRv.apply{
@@ -201,15 +203,15 @@ class DayItemView @JvmOverloads constructor(
             .show()
     }
 
-    private fun getDiaryList(date: String, dialogBinding: DialogDiaryDateSelectionDetailsBinding) {
+    private fun getDiaryList(date: String, dialogBinding: DialogDiaryDateSelectionDetailsBinding, selectDateStr: String) {
         val call: Call<DiaryPreviewList> = DiaryClient.diaryService.getDiaryList(date)
         call.enqueue(object: Callback<DiaryPreviewList> {
             override fun onResponse(call: Call<DiaryPreviewList>, response: Response<DiaryPreviewList>) {
                 if(response.isSuccessful){
                     val diaryResult: DiaryPreviewList = response.body()!!
                     if(diaryResult.isSuccess){
-                        if (diaryResult != null) {
-                            var diaryListAdapter = DiaryRVAdapter(diaryResult.result, context)
+                        if (diaryResult.result != null) {
+                            var diaryListAdapter = DiaryRVAdapter(diaryResult.result, context, selectDateStr)
                             var diaryListManager =
                                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                             dialogBinding.diaryRv.apply {
