@@ -1,15 +1,12 @@
 package com.example.companion_diary.diary
 
-import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-import android.app.ActionBar
+import android.Manifest
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.MotionEvent
@@ -20,50 +17,42 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.companion_diary.DiaryFragment
 import com.example.companion_diary.MainActivity
-import com.example.companion_diary.ProfileFragment
 import com.example.companion_diary.R
-import com.example.companion_diary.databinding.ActivityMainBinding
 import com.example.companion_diary.databinding.ActivityWriteDiaryBinding
 import com.example.companion_diary.diary.custom.DayItemView.Companion.selectDateDay
 import com.example.companion_diary.diary.custom.DayItemView.Companion.selectDateMonth
 import com.example.companion_diary.diary.custom.DayItemView.Companion.selectDateYear
 import com.example.companion_diary.diary.entities.Diary
+import com.example.companion_diary.diary.entities.DiaryPreview
 import com.example.companion_diary.diary.entities.DiaryResponse
-import com.example.companion_diary.diary.entities.Pet
-import com.example.companion_diary.diary.entities.PetList
 import com.example.companion_diary.diary.network.DiaryClient
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.normal.TedPermission
 import gun0912.tedbottompicker.TedBottomPicker
 import gun0912.tedbottompicker.TedBottomSheetDialogFragment
-import org.joda.time.DateTime
-import org.json.JSONArray
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
-class WriteDiaryActivity:AppCompatActivity(), PermissionListener {
 
+class ModifyDiaryActivity: AppCompatActivity(), PermissionListener {
     lateinit var binding : ActivityWriteDiaryBinding
     lateinit var imgList : MutableList<Uri>
     lateinit var imgListManager: LinearLayoutManager
     lateinit var imgListAdapter: DiaryImgRVAdapter
     lateinit var mIntent : Intent
-    lateinit var pet: Pet
-    val TAG = "WriteDiaryActivity"
+    lateinit var targetDiary: DiaryPreview
+    val TAG = "ModifyDiaryActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWriteDiaryBinding.inflate(layoutInflater)
-        imgList = ArrayList<Uri>()
 
         initView()
         initClickListener()
@@ -73,6 +62,7 @@ class WriteDiaryActivity:AppCompatActivity(), PermissionListener {
     }
 
     override fun onBackPressed() {
+//        super.onBackPressed()
         backButtonPressed()
     }
 
@@ -83,24 +73,32 @@ class WriteDiaryActivity:AppCompatActivity(), PermissionListener {
         return super.dispatchTouchEvent(ev)
     }
 
-    private fun initView(){
+    private fun stringToUri(){
+        imgList = ArrayList<Uri>()
+        if(!targetDiary.diaryImgUrl1.isNullOrEmpty()){
+            imgList.add(Uri.parse(targetDiary.diaryImgUrl1))
+        }
+        if(!targetDiary.diaryImgUrl2.isNullOrEmpty()){
+            imgList.add(Uri.parse(targetDiary.diaryImgUrl2))
+        }
+        if(!targetDiary.diaryImgUrl3.isNullOrEmpty()){
+            imgList.add(Uri.parse(targetDiary.diaryImgUrl3))
+        }
+        if(!targetDiary.diaryImgUrl4.isNullOrEmpty()){
+            imgList.add(Uri.parse(targetDiary.diaryImgUrl4))
+        }
+        if(!targetDiary.diaryImgUrl5.isNullOrEmpty()){
+            imgList.add(Uri.parse(targetDiary.diaryImgUrl5))
+        }
+    }
+
+    private fun initView() {
         mIntent = intent
-        pet = mIntent.getSerializableExtra("pet") as Pet
+        targetDiary = mIntent.getSerializableExtra("diary") as DiaryPreview
 
-        /**
-         * 동식물 구분해서 background resource 변경
-         */
-        binding.yearMonthDateTv.text = "${selectDateYear}년 ${selectDateMonth}월 ${selectDateDay}일"
+        stringToUri()
 
-        Glide.with(binding.nameTagIv)
-            .load(pet.petProfileImg)
-            .into(binding.nameTagIv)
-        binding.nameTagIv.scaleType = ImageView.ScaleType.CENTER_CROP
-        binding.nameTagIv.setBackgroundResource(R.drawable.border_name_tag_img)
-        binding.nameTagIv.clipToOutline = true
-
-        binding.nameTagTv.text = pet.petName
-        when(pet.petTag){
+        when(targetDiary.petTag){
             "ANIMAL" -> {
                 binding.nameTagLayout.setBackgroundResource(R.drawable.border_name_tag_animal)
                 binding.registerBtn.setBackgroundResource(R.drawable.border_register_button_orange)
@@ -114,6 +112,20 @@ class WriteDiaryActivity:AppCompatActivity(), PermissionListener {
                     .let { binding.nameTagTv.setTextColor(it) }
             }
         }
+        Glide.with(binding.nameTagIv)
+            .load(targetDiary.petProfileImg)
+            .into(binding.nameTagIv)
+        binding.nameTagIv.scaleType = ImageView.ScaleType.CENTER_CROP
+        binding.nameTagIv.setBackgroundResource(R.drawable.border_name_tag_img)
+        binding.nameTagIv.clipToOutline = true
+        binding.registerBtn.text = "수정"
+
+        binding.nameTagTv.text = targetDiary.petName
+
+        binding.titleEdt.setText(targetDiary.diaryTitle)
+        binding.contentEdt.setText(targetDiary.diaryContent)
+
+        binding.yearMonthDateTv.text = "${selectDateYear}년 ${selectDateMonth}월 ${selectDateDay}일"
     }
 
     private fun initClickListener(){
@@ -122,7 +134,7 @@ class WriteDiaryActivity:AppCompatActivity(), PermissionListener {
         }
         binding.registerBtn.setOnClickListener {
             if(checkIsEmpty()) {
-                createDiary()
+                modifyDiary()
             }
         }
         binding.addImgIv.setOnClickListener {
@@ -146,15 +158,16 @@ class WriteDiaryActivity:AppCompatActivity(), PermissionListener {
         dialog.show()
     }
 
-    private fun createDiary(){
+    private fun modifyDiary() {
         val currentTime = SimpleDateFormat("HH:mm:ss").format(Date(System.currentTimeMillis()))
         val date = "${selectDateYear}-${selectDateMonth}-${selectDateDay} $currentTime"
+        Log.d(TAG,"date: $date")
         val tempList: ArrayList<String?> = arrayListOf(null, null, null, null, null)
         for(i in 0 until imgList.size){
             tempList[i] = imgList[i].toString()
         }
         val newDiary = Diary(
-            petId = pet.petId,
+            petId = targetDiary.petId,
             date = date,
             diaryTitle = binding.titleEdt.text.toString(),
             diaryContent = binding.contentEdt.text.toString(),
@@ -165,14 +178,15 @@ class WriteDiaryActivity:AppCompatActivity(), PermissionListener {
             diaryImgUrl5 = tempList[4]
         )
 
-        val call: Call<DiaryResponse> = DiaryClient.diaryService.createDiary(newDiary)
+        val call: Call<DiaryResponse> = DiaryClient.diaryService.modifyDiary(newDiary,targetDiary.diaryId)
         call.enqueue(object : Callback<DiaryResponse>{
             override fun onResponse(call: Call<DiaryResponse>, response: Response<DiaryResponse>) {
                 if(response.isSuccessful){
                     val diaryResponse: DiaryResponse = response.body()!!
                     if(diaryResponse.isSuccess){
-                        val intent = Intent(this@WriteDiaryActivity, MainActivity::class.java)
+                        val intent = Intent(this@ModifyDiaryActivity, MainActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        supportFragmentManager.beginTransaction().replace(R.id.main_frm,DiaryFragment()).commit()
                         startActivity(intent)
                     }
                     else {
@@ -200,10 +214,10 @@ class WriteDiaryActivity:AppCompatActivity(), PermissionListener {
 
     private fun checkIsEmpty(): Boolean{
         if(binding.titleEdt.text.isEmpty() && binding.contentEdt.text.isEmpty()){
-            Toast.makeText(this,"제목과 내용을 작성해주세요",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"제목과 내용을 작성해주세요", Toast.LENGTH_SHORT).show()
         }
         else if(binding.titleEdt.text.isEmpty()){
-            Toast.makeText(this,"제목을 작성해주세요",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"제목을 작성해주세요", Toast.LENGTH_SHORT).show()
         }
         else if(binding.contentEdt.text.isEmpty()){
             Toast.makeText(this,"내용을 작성해주세요", Toast.LENGTH_SHORT).show()
@@ -222,7 +236,7 @@ class WriteDiaryActivity:AppCompatActivity(), PermissionListener {
                 .setGotoSettingButtonText("설정")
                 .setRationaleTitle("권한 설정")
                 .setPermissions(
-                    WRITE_EXTERNAL_STORAGE
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
                 )
                 .check()
         }
@@ -269,7 +283,7 @@ class WriteDiaryActivity:AppCompatActivity(), PermissionListener {
     }
 
     override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
-        Toast.makeText(this, "카메라 접근 권한이 거부되었습니다.",Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "카메라 접근 권한이 거부되었습니다.", Toast.LENGTH_SHORT).show()
     }
 
     private fun initImgRecyclerView(){

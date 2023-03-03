@@ -28,4 +28,10 @@ interface DiaryApi {
     fun deleteDiary(
         @Path("diaryId") diaryId: Int
     ): Call<DiaryResponse>
+
+    @PUT("/diarys/{diaryId}")
+    fun modifyDiary(
+        @Body diary: Diary,
+        @Path("diaryId") diaryId: Int
+    ): Call<DiaryResponse>
 }

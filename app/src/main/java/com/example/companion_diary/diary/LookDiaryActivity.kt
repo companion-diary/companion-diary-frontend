@@ -1,6 +1,7 @@
 package com.example.companion_diary.diary
 
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -32,15 +33,10 @@ import retrofit2.Response
 import kotlin.math.abs
 
 class LookDiaryActivity:AppCompatActivity() {
-    private val binding: ActivityLookDiaryBinding by lazy {
-        ActivityLookDiaryBinding.inflate(
-            layoutInflater
-        )
-    }
+    private val binding: ActivityLookDiaryBinding by lazy { ActivityLookDiaryBinding.inflate(layoutInflater) }
     private val diaryList: ArrayList<DiaryPreview> by lazy { mIntent.getSerializableExtra("diaryList") as ArrayList<DiaryPreview> }
-    private val selectDate by lazy { mIntent.getStringExtra("selectDate")!! }
     private val mIntent by lazy { intent }
-    private val lookDiaryAdapter by lazy { LookDiaryVPAdapter(diaryList, this, selectDate) }
+    private val lookDiaryAdapter by lazy { LookDiaryVPAdapter(diaryList, this) }
     private val TAG = "LookDiaryActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -176,13 +172,28 @@ class LookDiaryActivity:AppCompatActivity() {
         var modifyBtn = view.findViewById<TextView>(R.id.modify_diary_tv)
         var removeBtn = view.findViewById<TextView>(R.id.remove_diary_tv)
         modifyBtn.setOnClickListener {
-            Log.d(TAG, "수정")
-            //modifyDiary()
+            val intent = Intent(this, ModifyDiaryActivity::class.java)
+            intent.putExtra("diary",diaryList[binding.lookDiaryVp.currentItem])
+            startActivity(intent)
         }
         removeBtn.setOnClickListener {
-            Log.d(TAG, "삭제")
             popupWindow.dismiss()
-            lookDiaryAdapter.removeItem(binding.lookDiaryVp.currentItem)
+            // TODO: 삭제된 일기를 수정하는 일이 없도록 삭제했을때나 수정했을 때 intent 로 넘어가는 부분은 이전 액티비티 종료시키기
+            val dialog = AlertDialog.Builder(this)
+            dialog.setMessage("정말 삭제하시겠습니까?")
+                .setPositiveButton("삭제",object: DialogInterface.OnClickListener{
+                    override fun onClick(p0: DialogInterface?, p1: Int) {
+                        binding.outsideIv.visibility = View.GONE
+                        lookDiaryAdapter.removeItem(binding.lookDiaryVp.currentItem)
+                    }
+                })
+                .setNegativeButton("취소", object: DialogInterface.OnClickListener{
+                    override fun onClick(p0: DialogInterface?, p1: Int) {
+                        binding.outsideIv.visibility = View.GONE
+                        p0!!.dismiss()
+                    }
+                })
+            dialog.show()
         }
         if (popupWindow.isShowing) {
             binding.outsideIv.visibility = View.VISIBLE

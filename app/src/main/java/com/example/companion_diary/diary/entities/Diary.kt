@@ -27,7 +27,19 @@ data class DiaryPreview(
     @SerializedName("diary_title")
     val diaryTitle: String,
     @SerializedName("diary_content")
-    val diaryContent: String
+    val diaryContent: String,
+    @SerializedName("date")
+    val date: String,
+    @SerializedName("diary_img_url_1")
+    val diaryImgUrl1: String? = null,
+    @SerializedName("diary_img_url_2")
+    val diaryImgUrl2: String? = null,
+    @SerializedName("diary_img_url_3")
+    val diaryImgUrl3: String? = null,
+    @SerializedName("diary_img_url_4")
+    val diaryImgUrl4: String? = null,
+    @SerializedName("diary_img_url_5")
+    val diaryImgUrl5: String? = null,
 ): java.io.Serializable
 
 data class Diary(

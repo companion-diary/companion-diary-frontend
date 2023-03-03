@@ -27,6 +27,9 @@
             android:windowSoftInputMode="adjustNothing"/>
 
         <activity android:name=".diary.LookDiaryActivity"/>
+
+        <activity android:name=".diary.ModifyDiaryActivity"/>
+
     </application>
 
 </manifest>

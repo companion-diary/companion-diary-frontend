@@ -5,8 +5,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
+import com.example.companion_diary.MainActivity
 import com.example.companion_diary.diary.utils.CalendarUtils.Companion.getMonthList
 import com.example.companion_diary.R
 import com.example.companion_diary.databinding.FragmentCalendarBinding
@@ -78,25 +80,31 @@ open class CalendarFragment: Fragment() {
                     if(dateResult.isSuccess){
                         Log.d(TAG,"onResponse success")
                         if (dateResult != null) {
-                            // TODO: LOG 삭제
-                            Log.d(TAG,"startDate: $startDate, endDate: $endDate")
-                            Log.d(TAG,"$dateResult")
-                            Log.i(TAG,"-------------------")
                             initCal(dateResult.result)
                         }
                     } else{
-                        Log.d(TAG,"${dateResult.message}")
+                        showAlertDialog(dateResult.message)
                     }
                 } else {
-                    Log.d(TAG,"onResponse 실패")
+                    showAlertDialog(response.message())
                 }
             }
 
             override fun onFailure(call: Call<Date>, t: Throwable) {
-                Log.d(TAG,"onFailure 예외: " + t.message)
+                showAlertDialog(t.message.toString())
             }
         })
 
+    }
+
+    private fun showAlertDialog(message: String) {
+        context?.let {
+            AlertDialog.Builder(it)
+                .setTitle("오류 발생")
+                .setMessage(message)
+                .setPositiveButton("확인") { dialog, _ -> dialog.dismiss() }
+                .show()
+        }
     }
 
     /**

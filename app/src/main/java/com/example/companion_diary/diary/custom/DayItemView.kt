@@ -49,12 +49,16 @@ class DayItemView @JvmOverloads constructor(
     private val dateList: ArrayList<String> = ArrayList<String>()
 ) : View(ContextThemeWrapper(context,defStyleRes),attrs,defStyleAttr) {
 
+    companion object {
+        lateinit var selectDateYear: String
+        lateinit var selectDateMonth: String
+        lateinit var selectDateDay: String
+    }
     private val bounds = Rect()
     private var textPaint: Paint = Paint()
     private var dotPaint: Paint = Paint()
     private var selectedPet: Pet? = null
     private var today : DateTime = DateTime()
-    private var selectDateStr: String = ""
     private val TAG = "DayItemView"
 
     init {
@@ -125,13 +129,22 @@ class DayItemView @JvmOverloads constructor(
     }
 
     private fun initBottomSheetDialog() {
+        /**
+         * 선택한 날짜 전역변수에 저장
+         */
+        selectDateYear = date.year.toString()
+        selectDateMonth = date.monthOfYear.toString()
+        selectDateDay = date.dayOfMonth.toString()
+
+        /**
+         * bottomSheetDialog 초기화
+         */
         val dialog = BottomSheetDialog(context, R.style.TransparentBottomSheetDialogFragment)
         val dialogBinding = DialogDiaryDateSelectionDetailsBinding.inflate(LayoutInflater.from(context))
         dialog.setContentView(dialogBinding.root)
         dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
         dialog.behavior.skipCollapsed = true
-        selectDateStr = "${date.year}년 ${date.monthOfYear}월 ${date.dayOfMonth}일"
-        dialogBinding.yearMonthDateTv.text = selectDateStr
+        dialogBinding.yearMonthDateTv.text = "${selectDateYear}년 ${selectDateMonth}월 ${selectDateDay}일"
 
         dialogBinding.prevIv.setOnClickListener {
             selectedPet = null
@@ -141,11 +154,11 @@ class DayItemView @JvmOverloads constructor(
             selectedPet = null
         }
 
-        getDiaryList("${date.year}-${date.monthOfYear}-${date.dayOfMonth}", dialogBinding, selectDateStr)
+        getDiaryList("${selectDateYear}-${selectDateMonth}-${selectDateDay}", dialogBinding)
         getPetList(dialogBinding)
 
         dialogBinding.writeDiaryBtn.setOnClickListener {
-            var intent = Intent(context, WriteDiaryActivity::class.java)
+            val intent = Intent(context, WriteDiaryActivity::class.java)
             if(selectedPet == null){
                 Toast.makeText(context, "어떤 친구의 하루를 작성할지 선택해주세요",Toast.LENGTH_SHORT).show()
             } else {
@@ -203,7 +216,7 @@ class DayItemView @JvmOverloads constructor(
             .show()
     }
 
-    private fun getDiaryList(date: String, dialogBinding: DialogDiaryDateSelectionDetailsBinding, selectDateStr: String) {
+    private fun getDiaryList(date: String, dialogBinding: DialogDiaryDateSelectionDetailsBinding) {
         val call: Call<DiaryPreviewList> = DiaryClient.diaryService.getDiaryList(date)
         call.enqueue(object: Callback<DiaryPreviewList> {
             override fun onResponse(call: Call<DiaryPreviewList>, response: Response<DiaryPreviewList>) {
@@ -211,7 +224,7 @@ class DayItemView @JvmOverloads constructor(
                     val diaryResult: DiaryPreviewList = response.body()!!
                     if(diaryResult.isSuccess){
                         if (diaryResult.result != null) {
-                            var diaryListAdapter = DiaryRVAdapter(diaryResult.result, context, selectDateStr)
+                            var diaryListAdapter = DiaryRVAdapter(diaryResult.result, context)
                             var diaryListManager =
                                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                             dialogBinding.diaryRv.apply {

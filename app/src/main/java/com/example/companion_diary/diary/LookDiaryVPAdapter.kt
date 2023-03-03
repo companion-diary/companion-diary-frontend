@@ -8,6 +8,7 @@ import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.*
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.PopupMenu
 import android.widget.PopupWindow
 import android.widget.Toast
@@ -15,10 +16,15 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.content.ContextCompat.startActivity
+import androidx.core.view.marginTop
+import androidx.core.view.setMargins
 import androidx.recyclerview.widget.RecyclerView
 import com.example.companion_diary.MainActivity
 import com.example.companion_diary.R
 import com.example.companion_diary.databinding.ItemDiaryBinding
+import com.example.companion_diary.diary.custom.DayItemView.Companion.selectDateDay
+import com.example.companion_diary.diary.custom.DayItemView.Companion.selectDateMonth
+import com.example.companion_diary.diary.custom.DayItemView.Companion.selectDateYear
 import com.example.companion_diary.diary.entities.Diary
 import com.example.companion_diary.diary.entities.DiaryPreview
 import com.example.companion_diary.diary.entities.DiaryResponse
@@ -28,12 +34,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-private const val TAG = "LookDiaryVPAdpater"
+private const val TAG = "LookDiaryVPAdapter"
 
 class LookDiaryVPAdapter(
     val diaryList: ArrayList<DiaryPreview>,
     val mContext: Context,
-    val selectDate: String
 ) : RecyclerView.Adapter<LookDiaryVPAdapter.ViewHolder>() {
 
     interface MyItemClickListener{
@@ -43,28 +48,20 @@ class LookDiaryVPAdapter(
     fun setMyItemClickListener(itemClickListener: MyItemClickListener){
         mItemClickListener = itemClickListener
     }
-    fun modifyItem(position: Int){
-        val targetDiaryId = diaryList[position].diaryId
-        /**
-         * Diary 객체 intent로 전달 (WriteDiaryActivity로 전달)
-         */
-    }
     fun removeItem(position: Int){
         /**
          * 서버로 전달 필요
          */
         val targetDiaryId = diaryList[position].diaryId
         diaryList.removeAt(position)
-        Log.d(TAG, "$targetDiaryId")
         val call: Call<DiaryResponse> = DiaryClient.diaryService.deleteDiary(targetDiaryId)
         call.enqueue(object : Callback<DiaryResponse> {
             override fun onResponse(call: Call<DiaryResponse>, response: Response<DiaryResponse>) {
                 if (response.isSuccessful) {
                     val diaryResponse: DiaryResponse = response.body()!!
                     if (diaryResponse.isSuccess) {
-                        Log.d(TAG,"삭제 성공")
-                        val intent = Intent(mContext, MainActivity::class.java)
-                        mContext.startActivity(intent)
+//                        val intent = Intent(mContext, MainActivity::class.java)
+//                        mContext.startActivity(intent)
                     } else {
                         showAlertDialog(diaryResponse.message)
                     }
@@ -109,22 +106,42 @@ class LookDiaryVPAdapter(
             binding.titleTv.text = diaryList[position].diaryTitle
             binding.contentsTv.text = diaryList[position].diaryContent
             binding.contentsTv.movementMethod = ScrollingMovementMethod()
-            binding.yearMonthDateTv.text = selectDate
+            binding.yearMonthDateTv.text = "${selectDateYear}년 ${selectDateMonth}월 ${selectDateDay}일"
 
             binding.lookDiaryMoreIv.setOnClickListener {
                 mItemClickListener.moreBtnClick(binding.lookDiaryMoreIv)
             }
 
-//            initImgVP(position)
+            initImgVP(position)
         }
-//        private fun initImgVP(position: Int){
-//            val imgVPAdapter = LookDiaryImgVPAdapter(diaryList[position].imgList,mContext)
-//            binding.imgVp.apply {
-//                adapter = imgVPAdapter
-//                binding.vpDotIndicator.attachTo(binding.imgVp)
-//                (getChildAt(0) as? RecyclerView)?.overScrollMode = View.OVER_SCROLL_NEVER
-//            }
-//        }
+        private fun initImgVP(position: Int){
+            val imgList = ArrayList<String?>()
+            if(!diaryList[position].diaryImgUrl1.isNullOrEmpty()){
+                imgList.add(diaryList[position].diaryImgUrl1)
+            }
+            if(!diaryList[position].diaryImgUrl2.isNullOrEmpty()){
+                imgList.add(diaryList[position].diaryImgUrl2)
+            }
+            if(!diaryList[position].diaryImgUrl3.isNullOrEmpty()){
+                imgList.add(diaryList[position].diaryImgUrl3)
+            }
+            if(!diaryList[position].diaryImgUrl4.isNullOrEmpty()){
+                imgList.add(diaryList[position].diaryImgUrl4)
+            }
+            if(!diaryList[position].diaryImgUrl5.isNullOrEmpty()){
+                imgList.add(diaryList[position].diaryImgUrl5)
+            }
+            if(imgList.size==0){
+                binding.imgVp.visibility = View.GONE
+                binding.vpDotIndicator.visibility = View.GONE
+            }
+            val imgVPAdapter = LookDiaryImgVPAdapter(imgList, mContext)
+            binding.imgVp.apply {
+                adapter = imgVPAdapter
+                binding.vpDotIndicator.attachTo(binding.imgVp)
+                (getChildAt(0) as? RecyclerView)?.overScrollMode = View.OVER_SCROLL_NEVER
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

@@ -19,13 +19,11 @@ import com.gun0912.tedpermission.provider.TedPermissionProvider.context
 class DiaryRVAdapter(
     private var diaryPreviewList: ArrayList<DiaryPreview>,
     val mContext: Context,
-    val selectDate: String
 ): RecyclerView.Adapter<DiaryRVAdapter.ViewHolder>() {
     inner class ViewHolder(val binding: ItemDiaryPreviewBinding):RecyclerView.ViewHolder(binding.root){
         fun initClickListener(position: Int){
             binding.itemDiaryLayout.setOnClickListener {
                 var intent = Intent(mContext,LookDiaryActivity::class.java)
-                intent.putExtra("selectDate",selectDate)
                 intent.putExtra("diaryList",diaryPreviewList)
                 intent.putExtra("position",position)
                 mContext.startActivity(intent)
@@ -34,13 +32,13 @@ class DiaryRVAdapter(
         fun initView(diaryPreview: DiaryPreview){
             when(diaryPreview.petTag){
                 "ANIMAL" -> {
-                    binding.profileIv.setImageResource(R.drawable.ic_animal)
+//                    binding.profileIv.setImageResource(R.drawable.ic_animal)
                     binding.itemDiaryLayout.setBackgroundResource(R.drawable.border_diary_preview_layout_orange)
                     binding.itemDiaryNameTagTv.setTextColor(context.getColor(R.color.main_color_orange))
                     binding.itemDiaryTitleTv.setTextColor(context.getColor(R.color.main_color_orange))
                 }
                 "PLANT" -> {
-                    binding.profileIv.setImageResource(R.drawable.ic_plant)
+//                    binding.profileIv.setImageResource(R.drawable.ic_plant)
                     binding.itemDiaryLayout.setBackgroundResource(R.drawable.border_diary_preview_layout_green)
                     binding.itemDiaryNameTagTv.setTextColor(context.getColor(R.color.main_color_green))
                     binding.itemDiaryTitleTv.setTextColor(context.getColor(R.color.main_color_green))
@@ -49,12 +47,12 @@ class DiaryRVAdapter(
             binding.itemDiaryNameTagTv.text = diaryPreview.petName
             binding.itemDiaryTitleTv.text = diaryPreview.diaryTitle
             binding.itemDiaryContentsTv.text = diaryPreview.diaryContent
-            Glide.with(binding.profileIv)
-                .load(diaryPreview.petProfileImg)
-                .into(binding.profileIv)
             binding.profileIv.setBackgroundResource(R.drawable.border_name_tag_img)
             binding.profileIv.scaleType = ImageView.ScaleType.CENTER_CROP
             binding.profileIv.clipToOutline = true
+            Glide.with(binding.profileIv)
+                .load(diaryPreview.petProfileImg)
+                .into(binding.profileIv)
         }
     }
 

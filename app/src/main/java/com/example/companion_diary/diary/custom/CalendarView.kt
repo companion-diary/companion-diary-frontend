@@ -55,7 +55,9 @@ class CalendarView @JvmOverloads constructor(
     }
 
     fun initCalendar(firstDayOfMonth: DateTime,list: List<DateTime>, dateList: ArrayList<String>){
-        // TODO: 서버에서 받아온 월별일기 리스트를 매개변수로 전달
+        /**
+         * 서버에서 받아온 월별일기 리스트를 매개변수로 전달
+         */
         list.forEach {
             addView(DayItemView(
                 context = context,
