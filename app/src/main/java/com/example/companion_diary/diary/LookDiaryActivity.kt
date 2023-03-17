@@ -178,13 +178,15 @@ class LookDiaryActivity:AppCompatActivity() {
         }
         removeBtn.setOnClickListener {
             popupWindow.dismiss()
-            // TODO: 삭제된 일기를 수정하는 일이 없도록 삭제했을때나 수정했을 때 intent 로 넘어가는 부분은 이전 액티비티 종료시키기
             val dialog = AlertDialog.Builder(this)
             dialog.setMessage("정말 삭제하시겠습니까?")
                 .setPositiveButton("삭제",object: DialogInterface.OnClickListener{
                     override fun onClick(p0: DialogInterface?, p1: Int) {
                         binding.outsideIv.visibility = View.GONE
                         lookDiaryAdapter.removeItem(binding.lookDiaryVp.currentItem)
+                        val intent = Intent(this@LookDiaryActivity, MainActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
                     }
                 })
                 .setNegativeButton("취소", object: DialogInterface.OnClickListener{

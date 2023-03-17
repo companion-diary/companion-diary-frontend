@@ -186,7 +186,7 @@ class ModifyDiaryActivity: AppCompatActivity(), PermissionListener {
                     if(diaryResponse.isSuccess){
                         val intent = Intent(this@ModifyDiaryActivity, MainActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        supportFragmentManager.beginTransaction().replace(R.id.main_frm,DiaryFragment()).commit()
+//                        supportFragmentManager.beginTransaction().replace(R.id.main_frm,DiaryFragment()).commit()
                         startActivity(intent)
                     }
                     else {
