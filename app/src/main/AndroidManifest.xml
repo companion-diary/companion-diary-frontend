@@ -50,6 +50,14 @@
                     android:scheme="@string/kakao_oauth_host" />
             </intent-filter>
         </activity>
-    </application>
+        
+                <activity android:name=".diary.WriteDiaryActivity"
+            android:windowSoftInputMode="adjustNothing"/>
 
+        <activity android:name=".diary.LookDiaryActivity"/>
+
+        <activity android:name=".diary.ModifyDiaryActivity"
+            android:windowSoftInputMode="adjustNothing"/>
+        
+    </application>
 </manifest>

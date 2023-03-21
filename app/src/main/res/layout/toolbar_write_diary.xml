@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="70dp">
+    
+    <ImageView
+        android:id="@+id/cancel_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_previous_button"
+        android:layout_marginStart="32dp"/>
+
+    <TextView
+        android:layout_width="70dp"
+        android:layout_height="23dp"
+        android:textSize="16sp"
+        android:text="일기 작성"
+        android:textColor="#484848"
+        android:fontFamily="@font/roboto_bold"
+        android:includeFontPadding="false"
+        android:gravity="center"
+        android:layout_gravity="center"/>
+
+
+</androidx.appcompat.widget.Toolbar>
