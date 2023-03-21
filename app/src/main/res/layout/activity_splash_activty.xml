@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4E9F27"
+    tools:context=".SplashActivty">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+    <ImageView
+        android:id="@+id/splash_icon_iv"
+        android:layout_width="135dp"
+        android:layout_height="135dp"
+        android:src="@drawable/splash_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="27dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="동식물 일기 어플리케이션"
+        android:fontFamily="@font/robotoblack"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/splash_icon_iv"
+        app:layout_constraintStart_toStartOf="@id/splash_icon_iv"
+        app:layout_constraintEnd_toEndOf="@id/splash_icon_iv"
+        android:id="@+id/sub_title_tv"
+        />
+
+    <TextView
+        android:textColor="#FFFFFF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="동식이 일기"
+        android:fontFamily="@font/jalnanotp"
+        android:textSize="32sp"
+        app:layout_constraintTop_toBottomOf="@id/sub_title_tv"
+        app:layout_constraintStart_toStartOf="@id/sub_title_tv"
+        app:layout_constraintEnd_toEndOf="@id/sub_title_tv"
+        android:layout_marginTop="8dp"
+        />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

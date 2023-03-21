@@ -26,13 +26,13 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun initBottomNavigation(){
+    private fun initBottomNavigation() {
 
         supportFragmentManager.beginTransaction()
             .replace(R.id.main_frm, StoreFragment())
             .commitAllowingStateLoss()
 
-        binding.mainBnv.setOnItemSelectedListener{ item ->
+        binding.mainBnv.setOnItemSelectedListener { item ->
             when (item.itemId) {
 
                 R.id.profileFragment -> {
